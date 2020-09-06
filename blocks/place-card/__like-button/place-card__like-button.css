@@ -1,0 +1,9 @@
+.place-card__like-button {
+    width: 21px;
+    height: 18px;
+    align-self: center;
+}
+.place-card__like-button:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}

@@ -1,21 +1,39 @@
 @import url(../vendor/normalize.css);
 @import url(../vendor/fonts/fonts.css);
-
 @import url(../blocks/page/page.css);
-
+@import url(../blocks/section-pos/section-pos.css);
+@import url(../blocks/hide-text-overflow/hide-text-overflow.css);
+@import url(../blocks/typo/_size_xxl/typo_size_xxl.css);
+@import url(../blocks/typo/_size_xl/typo_size_xl.css);
+@import url(../blocks/typo/_size_l/typo_size_l.css);
 @import url(../blocks/header/header.css);
-@import url(../blocks/header/__pos/header__pos.css);
 @import url(../blocks/header/__logo/header__logo.css);
-
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
-
+@import url(../blocks/profile/__add-button/_pos-main/profile__add-button_pos-main.css);
 @import url(../blocks/profile-info/profile-info.css);
 @import url(../blocks/profile-info/__name/profile-info__name.css);
 @import url(../blocks/profile-info/__job/profile-info__job.css);
 @import url(../blocks/profile-info/__edit-button/profile-info__edit-button.css);
-
+@import url(../blocks/profile-info/__edit-button/_pos-main/profile-info_edit-button_pos-main.css);
+@import url(../blocks/profile-card/profile-card.css);
+@import url(../blocks/places/places.css);
+@import url(../blocks/place-card/place-card.css);
+@import url(../blocks/place-card/__image/place-card__image.css);
+@import url(../blocks/place-card/__like-button/place-card__like-button.css);
+@import url(../blocks/place-card/__label/place-card__label.css);
 @import url(../blocks/footer/footer.css);
-
-* { outline: 1px solid royalblue; }
+@import url(../blocks/footer/__copyright/footer__copyright.css);
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__field-text/popup__field-text.css);
+@import url(../blocks/popup/__field-name/popup__field-name.css);
+@import url(../blocks/popup/__field-job/popup__field-job.css);
+@import url(../blocks/popup/__caption/popup__caption.css);
+@import url(../blocks/popup/__form/popup__form.css);
+@import url(../blocks/popup/__field-border/popup__field-border.css);
+@import url(../blocks/popup/__save-button/popup__save-button.css);
+@import url(../blocks/popup/__close-button/popup__close-button.css);
+@import url(../blocks/popup/_opened/popup_opened.css);

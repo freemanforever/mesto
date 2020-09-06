@@ -12,24 +12,88 @@
 
 <body>
   <div class="page">
-    <header class="header header__pos">
-      <img src="./images/logo.svg" alt="логотип место" class="header__logo">      
+    <header class="header section-pos">
+      <img src="./images/logo.svg" alt="логотип место" class="header__logo">
     </header>
     <main class="content">
-      <section class="profile">
-        <img src="./images/avatar.jpg" alt="Аватар пользователя" class="avatar">
+      <section class="profile section-pos">
+        <img src="./images/avatar.svg" alt="Аватар пользователя" class="profile__avatar">
+        <div class="profile-info">
+          <div class="profile-card">
+            <h1 class="profile-info__name typo typo_size_xl hide-text-overflow">Жак-Ив Кусто</h1>
+            <img src="./images/editButton.svg" class="profile-info__edit-button profile-info_edit-button_pos-main"
+              alt="кнопка редактирования профиля">
+          </div>
+          <h2 class="profile-info__job typo typo_size_l hide-text-overflow">Исследователь океана</h2>
+        </div>
+        <img src="./images/addButton.svg" class="profile__add-button profile__add-button_pos-main"
+          alt="кнопка добавления профиля">
       </section>
-      <!--
-      <section class="elements">
+      <section class="places section-pos">
+        <div class="place-card">
+          <img src="./images/1.jpg" alt="Закат на озере" class="place-card__image">
+          <div class="place-card__label">
+            <h3 class="typo_size_xxl hide-text-overflow">Закат на озере</h3>
+            <img src="./images/likeButton.svg" alt="кнопка 'Мне нравится!'" class="place-card__like-button">
+          </div>
+        </div>
+        <div class="place-card">
+          <img src="./images/2.jpg" alt="Дворец и мост" class="place-card__image">
+          <div class="place-card__label">
+            <h3 class="typo_size_xxl hide-text-overflow">Дворец и мост</h3>
+            <img src="./images/likeButton.svg" alt="кнопка 'Мне нравится!'" class="place-card__like-button">
+          </div>
+        </div>
+        <div class="place-card">
+          <img src="./images/3.jpg" alt="Море и тучи" class="place-card__image">
+          <div class="place-card__label">
+            <h3 class="typo_size_xxl hide-text-overflow">Море и тучи</h3>
+            <img src="./images/likeButton.svg" alt="кнопка 'Мне нравится!'" class="place-card__like-button">
+          </div>
+        </div>
+        <div class="place-card">
+          <img src="./images/4.jpg" alt="Вечерний салют" class="place-card__image">
+          <div class="place-card__label">
+            <h3 class="typo_size_xxl hide-text-overflow">Вечерний салют</h3>
+            <img src="./images/likeButton.svg" alt="кнопка 'Мне нравится!'" class="place-card__like-button">
+          </div>
+        </div>
+        <div class="place-card">
+          <img src="./images/5.jpg" alt="Пещеры" class="place-card__image">
+          <div class="place-card__label">
+            <h3 class="typo_size_xxl hide-text-overflow">Пещеры</h3>
+            <img src="./images/likeButton.svg" alt="кнопка 'Мне нравится!'" class="place-card__like-button">
+          </div>
+        </div>
+        <div class="place-card">
+          <img src="./images/6.jpg" alt="Лес и вулкан" class="place-card__image">
+          <div class="place-card__label">
+            <h3 class="typo_size_xxl hide-text-overflow">Лес и вулкан</h3>
+            <img src="./images/likeButton.svg" alt="кнопка 'Мне нравится!'" class="place-card__like-button">
+          </div>
+        </div>
+      </section>
 
-      </section>      
+      <section class="popup">
+        <img src="./images/closeButton.svg" class="popup__close-button" alt="кнопка закрытия формы">
+        <div class="popup__container">
+          <div class="popup__form">
+            <h3 class="popup__caption typo_size_xxl">Редактировать профиль</h3>
+            <input class="popup__field-name popup__field-text" id="inputName" value="">
+            <div class="popup__field-border"></div>
+            <input class="popup__field-job popup__field-text" id="inputJob" value="">
+            <div class="popup__field-border"></div>
+            <button class="popup__save-button">Сохранить</button>
+          </div>
+        </div>
+      </section>
+
     </main>
-
-    <footer class="footer">
+    <footer class="footer section-pos">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
--->
   </div>
+  <script src="./scripts/script.js" defer></script>
 </body>
 
 </html>

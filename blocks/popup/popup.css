@@ -1,0 +1,10 @@
+.popup {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+}

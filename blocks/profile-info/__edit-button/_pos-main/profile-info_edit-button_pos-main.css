@@ -1,0 +1,9 @@
+.profile-info_edit-button_pos-main {    
+    margin-top: 7px;
+}
+@media screen and (min-width: 320px) and (max-width: 1023px) {
+    .profile-info_edit-button_pos-main {
+        margin-top: 16px;
+        margin-left: 1px;
+    }
+}

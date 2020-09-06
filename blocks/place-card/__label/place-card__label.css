@@ -1,0 +1,7 @@
+.place-card__label {
+    display: flex;
+    justify-content: space-between;
+    width: 87.2%;
+    max-width: 246px;
+    margin: 0 auto;
+}
