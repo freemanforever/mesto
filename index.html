@@ -32,58 +32,9 @@
           <img class="profile__add-button-img" src="./images/addButton.svg" alt="кнопка добавления профиля">
         </button>
       </section>
-
       <section class="places section-pos">
-        <div class="place-card">
-          <img src="./images/1.jpg" alt="Закат на озере" class="place-card__image">
-          <div class="place-card__label">
-            <h3 class="place-card__header typo typo_size_xxl hide-text-overflow">Закат на озере</h3>
-            <button type="button" class="place-card__like-button"><img class="place-card__like-img"
-                src="./images/likeButton.svg" alt="кнопка 'Мне нравится!'"></button>
-          </div>
-        </div>
-        <div class="place-card">
-          <img src="./images/2.jpg" alt="Дворец и мост" class="place-card__image">
-          <div class="place-card__label">
-            <h3 class="place-card__header typo typo_size_xxl hide-text-overflow">Дворец и мост</h3>
-            <button type="button" class="place-card__like-button"><img class="place-card__like-img"
-                src="./images/likeButton.svg" alt="кнопка 'Мне нравится!'"></button>
-          </div>
-        </div>
-        <div class="place-card">
-          <img src="./images/3.jpg" alt="Море и тучи" class="place-card__image">
-          <div class="place-card__label">
-            <h3 class="place-card__header typo typo_size_xxl hide-text-overflow">Море и тучи</h3>
-            <button type="button" class="place-card__like-button"><img class="place-card__like-img"
-                src="./images/likeButton.svg" alt="кнопка 'Мне нравится!'"></button>
-          </div>
-        </div>
-        <div class="place-card">
-          <img src="./images/4.jpg" alt="Вечерний салют" class="place-card__image">
-          <div class="place-card__label">
-            <h3 class="place-card__header typo typo_size_xxl hide-text-overflow">Вечерний салют</h3>
-            <button type="button" class="place-card__like-button"><img class="place-card__like-img"
-                src="./images/likeButton.svg" alt="кнопка 'Мне нравится!'"></button>
-          </div>
-        </div>
-        <div class="place-card">
-          <img src="./images/5.jpg" alt="Пещеры" class="place-card__image">
-          <div class="place-card__label">
-            <h3 class="place-card__header typo typo_size_xxl hide-text-overflow">Пещеры</h3>
-            <button type="button" class="place-card__like-button"><img class="place-card__like-img"
-                src="./images/likeButton.svg" alt="кнопка 'Мне нравится!'"></button>
-          </div>
-        </div>
-        <div class="place-card">
-          <img src="./images/6.jpg" alt="Лес и вулкан" class="place-card__image">
-          <div class="place-card__label">
-            <h3 class="place-card__header typo typo_size_xxl hide-text-overflow">Лес и вулкан</h3>
-            <button type="button" class="place-card__like-button"><img class="place-card__like-img"
-                src="./images/likeButton.svg" alt="кнопка 'Мне нравится!'"></button>
-          </div>
-        </div>
+        <ul class="place-card-list"></ul>        
       </section>
-
       <section class="popup">
         <button type="button" class="popup__close-button"><img class="popup__close-button-img"
             src="./images/closeButton.svg" alt="кнопка закрытия формы"></button>
@@ -96,15 +47,24 @@
           </form>
         </div>
       </section>
-
     </main>
-
     <footer class="footer section-pos">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
-
   </div>
-  <script src="./scripts/script.js" defer></script>
+
+  <template class="place-card-template">
+    <li class="place-card">
+      <img src="" alt="Пейзаж места" class="place-card__image">
+      <div class="place-card__label">
+        <h3 class="place-card__header typo typo_size_xxl hide-text-overflow content"></h3>
+        <button type="button" class="place-card__like-button">
+        <img class="place-card__like-img" src="./images/likeButton.svg" alt="кнопка 'Мне нравится!'"></button>
+      </div>
+    </li>
+  </template>
+
+  <script src="./scripts/script.js"></script>
 </body>
 
 </html>

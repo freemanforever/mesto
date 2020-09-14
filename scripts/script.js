@@ -6,6 +6,35 @@ const nameProfile = document.querySelector('.profile__name');
 const jobProfile = document.querySelector('.profile__job');
 const nameInput = document.querySelector('.popup__input_name');
 const jobInput = document.querySelector('.popup__input_job');
+const listCards = document.querySelector('.place-card-list');
+const cardTemplate = document.querySelector('.place-card-template');
+const initialCards = [
+    {
+        label: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        label: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        label: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        label: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        label: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        label: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
+
 // Находим форму в DOM
 let formElement = document.querySelector('.popup__form');
 
@@ -22,9 +51,22 @@ function formSubmitHandler (evt) {
     jobProfile.textContent = jobInput.value;
     popupToggle();
 }
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', formSubmitHandler);
 
+
+function render() {
+    listCards.innerHTML = "";
+    initialCards.forEach(renderItem);
+}
+
+function renderItem ({label, link}) {
+    const htmlElement = cardTemplate.content.cloneNode(true);
+    htmlElement.querySelector(".place-card__header").innerText = label;
+    htmlElement.querySelector(".place-card__image").src = link;
+    listCards.appendChild(htmlElement);
+}
+
+render ();
+
+formElement.addEventListener('submit', formSubmitHandler);
 popupOpenButton.addEventListener('click', popupToggle);
 popupCloseButton.addEventListener('click', popupToggle);
