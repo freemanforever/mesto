@@ -29,24 +29,38 @@
           <h2 class="profile__job typo typo_size_l hide-text-overflow">Исследователь океана</h2>
         </div>
         <button type="button" class="profile__add-button profile__add-button_pos-main">
-          <img class="profile__add-button-img" src="./images/addButton.svg" alt="кнопка добавления профиля">
+          <img class="profile__add-button-img" src="./images/addButton.svg" alt="кнопка добавления карточки">
         </button>
       </section>
-      <section class="places section-pos">
-        <ul class="place-card-list"></ul>        
-      </section>
-      <section class="popup">
-        <button type="button" class="popup__close-button"><img class="popup__close-button-img"
-            src="./images/closeButton.svg" alt="кнопка закрытия формы"></button>
+
+      <section class="places section-pos"></section>
+
+      <section class="popup popup-profile-edit">
+        <button type="button" class="popup__close-button profile-close-button"><img
+            class="popup__close-button-img" src="./images/closeButton.svg" alt="кнопка закрытия формы"></button>
         <div class="popup__container">
-          <form name="popupForm" class="popup__form">
+          <form name="popupForm" class="popup__form popup__form_profile-edit">
             <h3 class="popup__caption typo typo_size_xxl">Редактировать профиль</h3>
             <input class="popup__input popup__input_name" name="Name" value="">
             <input class="popup__input popup__input_job" name="Job" value="">
-            <button class="popup__save-button" type="submit">Сохранить</button>
+            <button class="popup__save-button popup__save-button_profile" type="submit">Сохранить</button>
           </form>
         </div>
       </section>
+
+      <section class="popup popup-place-add">
+        <button type="button" class="popup__close-button place-close-button"><img class="popup__close-button-img"
+            src="./images/closeButton.svg" alt="кнопка закрытия формы"></button>
+        <div class="popup__container">
+          <form name="popupFormPlace" class="popup__form popup__form_place-add">
+            <h3 class="popup__caption typo typo_size_xxl">Новое место</h3>
+            <input class="popup__input popup__input_place-name" name="PlaceName" value="Название">
+            <input class="popup__input popup__input_place-img" name="PlaceImage" value="Ссылка на картинку">
+            <button class="popup__save-button popup__save-button_place" type="submit">Сохранить</button>
+          </form>
+        </div>
+      </section>
+
     </main>
     <footer class="footer section-pos">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
@@ -54,14 +68,14 @@
   </div>
 
   <template class="place-card-template">
-    <li class="place-card">
+    <div class="place-card">
       <img src="" alt="Пейзаж места" class="place-card__image">
       <div class="place-card__label">
         <h3 class="place-card__header typo typo_size_xxl hide-text-overflow content"></h3>
         <button type="button" class="place-card__like-button">
-        <img class="place-card__like-img" src="./images/likeButton.svg" alt="кнопка 'Мне нравится!'"></button>
+          <img class="place-card__like-img" src="./images/likeButton.svg" alt="кнопка 'Мне нравится!'"></button>
       </div>
-    </li>
+    </div>
   </template>
 
   <script src="./scripts/script.js"></script>
