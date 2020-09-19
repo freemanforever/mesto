@@ -36,27 +36,27 @@
       <section class="places section-pos"></section>
 
       <section class="popup popup-profile-edit">
-        <button type="button" class="popup__close-button profile-close-button"><img
+        <button type="button" class="popup__close-button"><img
             class="popup__close-button-img" src="./images/closeButton.svg" alt="кнопка закрытия формы"></button>
         <div class="popup__container">
-          <form name="popupForm" class="popup__form popup__form_profile-edit">
+          <form name="popupForm" class="popup__form">
             <h3 class="popup__caption typo typo_size_xxl">Редактировать профиль</h3>
             <input class="popup__input popup__input_name" name="Name" value="">
             <input class="popup__input popup__input_job" name="Job" value="">
-            <button class="popup__save-button popup__save-button_profile" type="submit">Сохранить</button>
+            <button class="popup__save-button" type="submit">Сохранить</button>
           </form>
         </div>
       </section>
 
       <section class="popup popup-place-add">
-        <button type="button" class="popup__close-button place-close-button"><img class="popup__close-button-img"
+        <button type="button" class="popup__close-button"><img class="popup__close-button-img"
             src="./images/closeButton.svg" alt="кнопка закрытия формы"></button>
         <div class="popup__container">
-          <form name="popupFormPlace" class="popup__form popup__form_place-add">
+          <form name="popupFormPlace" class="popup__form">
             <h3 class="popup__caption typo typo_size_xxl">Новое место</h3>
-            <input class="popup__input popup__input_place-name" name="PlaceName" value="Название">
-            <input class="popup__input popup__input_place-img" name="PlaceImage" value="Ссылка на картинку">
-            <button class="popup__save-button popup__save-button_place" type="submit">Сохранить</button>
+            <input class="popup__input popup__input_place-name" name="PlaceName" value="" placeholder="Название">
+            <input class="popup__input popup__input_place-img" name="PlaceImage" value="" placeholder="Ссылка на картинку">
+            <button class="popup__save-button" type="submit">Создать</button>
           </form>
         </div>
       </section>
@@ -71,7 +71,7 @@
     <div class="place-card">
       <img src="" alt="Пейзаж места" class="place-card__image">
       <div class="place-card__label">
-        <h3 class="place-card__header typo typo_size_xxl hide-text-overflow content"></h3>
+        <h3 class="place-card__header typo typo_size_xxl hide-text-overflow"></h3>
         <button type="button" class="place-card__like-button">
           <img class="place-card__like-img" src="./images/likeButton.svg" alt="кнопка 'Мне нравится!'"></button>
       </div>

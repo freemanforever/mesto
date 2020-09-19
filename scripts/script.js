@@ -2,10 +2,9 @@ const popupProfileEdit = document.querySelector('.popup-profile-edit');
 const popupPlaceAdd = document.querySelector('.popup-place-add');
 const profileEditButton = document.querySelector('.profile__edit-button');
 const placeAddButton = document.querySelector('.profile__add-button');
-const profileEditCloseButton = document.querySelector('.profile-close-button');
-const placeAddCloseButton = document.querySelector('.place-close-button');
+const profileEditCloseButton = popupProfileEdit.querySelector('.popup__close-button');
+const placeAddCloseButton = popupPlaceAdd.querySelector('.popup__close-button');
 const popupSaveButton = document.querySelector('.popup__save-button');
-
 const nameProfile = document.querySelector('.profile__name');
 const jobProfile = document.querySelector('.profile__job');
 const nameInput = document.querySelector('.popup__input_name');
@@ -47,37 +46,45 @@ function renderItem ({label, link}) {
     listCards.appendChild(htmlElement);
 }
 function render() {
-    listCards.innerHTML = '';
+    listCards.innerHTML = "";
     initialCards.forEach(renderItem);
 }
 function popupToggle(x) {x.classList.toggle('popup_opened')};
-
-//1. Написать placeAddSubmitHandler для обработки добавления места.
-
-// Находим форму в DOM
-let formProfileEdit = document.querySelector('.popup__form_profile-edit');
+// Находим форму для Edit в DOM
+let formProfileEdit = popupProfileEdit.querySelector('.popup__form');
+//Функция для вставки данных в форму
+const defaultUserData = () => {
+    nameInput.value = nameProfile.textContent;
+    jobInput.value = jobProfile.textContent;
+}
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 function profileEditSubmitHandler (evt) {
-    evt.preventDefault(); 
+    evt.preventDefault();  
     nameProfile.textContent = nameInput.value;
     jobProfile.textContent = jobInput.value;
     popupToggle(popupProfileEdit);
 }
-// Находим форму в DOM
-let formPlaceAdd = document.querySelector('.popup__form_place-add');
+// Находим форму для Add Mesto в DOM
+let formPlaceAdd = popupPlaceAdd.querySelector('.popup__form');
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 function placeAddSubmitHandler (evt) {
     evt.preventDefault();
-    nameProfile.textContent = nameInput.value;
-    jobProfile.textContent = jobInput.value;
+    const addCardValues = {
+        label: placeNameInput.value,
+        link: placeImgInput.value
+    }
+    initialCards.unshift(addCardValues);
+    formPlaceAdd.reset();    
     popupToggle(popupPlaceAdd);
-}
+    render();
+}  
 
 render ();
 formProfileEdit.addEventListener('submit', profileEditSubmitHandler);
 formPlaceAdd.addEventListener('submit', placeAddSubmitHandler);
+profileEditButton.addEventListener('click', () => {defaultUserData()});
 profileEditButton.addEventListener('click', () => {popupToggle(popupProfileEdit)});
 placeAddButton.addEventListener('click', () => {popupToggle(popupPlaceAdd)});
 profileEditCloseButton.addEventListener('click', () => {popupToggle(popupProfileEdit)});
