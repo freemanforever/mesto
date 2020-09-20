@@ -21,6 +21,8 @@
 @import url(../blocks/places/places.css);
 @import url(../blocks/place-card/place-card.css);
 @import url(../blocks/place-card/__image/place-card__image.css);
+@import url(../blocks/place-card/__liked/place-card__liked.css);
+@import url(../blocks/place-card/__recycleButton/place-card__recycleButton.css);
 @import url(../blocks/place-card/__like-button/place-card__like-button.css);
 @import url(../blocks/place-card/__like-img/place-card__like-img.css);
 @import url(../blocks/place-card/__label/place-card__label.css);

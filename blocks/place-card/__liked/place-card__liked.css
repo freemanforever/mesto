@@ -1,0 +1,4 @@
+.place-card__like {
+    background-image: url(../../../images/likedButton.svg);
+    display: none;
+}

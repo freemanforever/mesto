@@ -70,10 +70,14 @@
   <template class="place-card-template">
     <div class="place-card">
       <img src="" alt="Пейзаж места" class="place-card__image">
+      <button type="button" class="place-card__recycleButton">
+        <img src="./images/recycleButton.svg" alt="Корзина" class="place-card__recycle-img">
+      </button>
       <div class="place-card__label">
         <h3 class="place-card__header typo typo_size_xxl hide-text-overflow"></h3>
         <button type="button" class="place-card__like-button">
-          <img class="place-card__like-img" src="./images/likeButton.svg" alt="кнопка 'Мне нравится!'"></button>
+          <img class="place-card__like-img" src="./images/likeButton.svg" alt="кнопка 'Мне нравится!'">          
+        </button>
       </div>
     </div>
   </template>

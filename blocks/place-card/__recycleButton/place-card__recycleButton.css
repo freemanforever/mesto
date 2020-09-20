@@ -1,0 +1,14 @@
+.place-card__recycleButton {
+    position: absolute;
+    top: 18px;
+    left: 249px;
+    border: none;
+    background: none;
+    display: flex;  
+    max-width: 18px;
+    padding: 0;      
+}
+.place-card__recycleButton:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
