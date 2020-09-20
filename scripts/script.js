@@ -5,7 +5,6 @@ const placeAddButton = document.querySelector('.profile__add-button');
 const profileEditCloseButton = popupProfileEdit.querySelector('.popup__close-button');
 const placeAddCloseButton = popupPlaceAdd.querySelector('.popup__close-button');
 const popupSaveButton = document.querySelector('.popup__save-button');
-const delButton = document.querySelector('.place-card__recycleButton');
 const nameProfile = document.querySelector('.profile__name');
 const jobProfile = document.querySelector('.profile__job');
 const nameInput = document.querySelector('.popup__input_name');
@@ -40,7 +39,7 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
-//Собираем карточку по частям и добавляем в массив
+//Собираем карточку и добавляем в массив
 function renderItem({ label, link }) {
     const htmlElement = cardTemplate.content.cloneNode(true);
     htmlElement.querySelector('.place-card__header').innerText = label;
@@ -51,6 +50,17 @@ function renderItem({ label, link }) {
         x.target.classList.toggle('place-card__like');
     })
 
+    //delete card Mesto
+    const deleteCard = (event) => {
+        event.preventDefault();
+        event.target.closest('.place-card').remove();
+    }
+    const delButton = () => {
+        const delButtons = document.querySelectorAll('.place-card__recycleButton');
+        delButtons.forEach(button => button.addEventListener('click', deleteCard));
+    }
+
+    delButton();
     listCards.appendChild(htmlElement);
 }
 //Выводим массив карточек на экран
@@ -62,7 +72,7 @@ function render() {
 function popupToggle(x) { x.classList.toggle('popup_opened') };
 //Обработчик для редактирования профиля
 // Находим форму для Edit в DOM
-let formProfileEdit = popupProfileEdit.querySelector('.popup__form');
+const formProfileEdit = popupProfileEdit.querySelector('.popup__form');
 //Функция для вставки данных в форму
 const defaultUserData = () => {
     nameInput.value = nameProfile.textContent;
@@ -78,26 +88,23 @@ function profileEditSubmitHandler(evt) {
 }
 //Обработчик для добавления места
 // Находим форму для Add Mesto в DOM
-let formPlaceAdd = popupPlaceAdd.querySelector('.popup__form');
+const formPlaceAdd = popupPlaceAdd.querySelector('.popup__form');
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 function placeAddSubmitHandler(evt) {
     evt.preventDefault();
-    //Добавим введенные значения в переменные карточки
+    const htmlElement = cardTemplate.content.cloneNode(true);
     const addCardValues = {
         label: placeNameInput.value,
         link: placeImgInput.value
     }
-    initialCards.unshift(addCardValues);
-    formPlaceAdd.reset();
+    htmlElement.querySelector('.place-card__header').innerText = addCardValues.label;
+    htmlElement.querySelector('.place-card__image').src = addCardValues.link;
+    listCards.prepend(htmlElement);
     popupToggle(popupPlaceAdd);
-    render();
+    formPlaceAdd.reset();
+    return
 }
-//delete card Mesto
-
-
-
-
 
 //listeners
 formProfileEdit.addEventListener('submit', profileEditSubmitHandler);
