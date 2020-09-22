@@ -60,6 +60,15 @@
         </div>
       </section>
 
+      <section class="popup popup-img">
+        <div class="popup-img__container">
+          <button type="button" class="popup-img__close-button"><img class="popup__close-button-img"
+              src="./images/closeButton.svg" alt="кнопка закрытия формы"></button>
+          <img src="" alt="" class="popup-img__opened-image">
+          <h3 class="popup-img__header"></h3>
+        </div>
+      </section>
+
     </main>
     <footer class="footer section-pos">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
@@ -68,7 +77,7 @@
 
   <template class="place-card-template">
     <div class="place-card">
-      <img src="" alt="Пейзаж места" class="place-card__image">
+      <img src="" alt="Пейзаж места" class="place-card__image" type="button">
       <button type="button" class="place-card__recycleButton">
         <img src="./images/recycleButton.svg" alt="Корзина" class="place-card__recycle-img">
       </button>

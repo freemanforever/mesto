@@ -8,11 +8,13 @@
     background: url(../../../images/addButton.svg) no-repeat center;
     border: 2px solid #fff;
     height: 50px;
+    border-radius: 2px;
 }
 @media screen and (min-width: 320px) and (max-width: 1023px) {
     .profile__add-button {
         max-width: 282px;
         margin-top: 36px;  
+        background: url(../../../images/addButtonLong.svg) no-repeat center;
     }
 }
 .profile__add-button:hover {

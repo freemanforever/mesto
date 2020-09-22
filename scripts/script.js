@@ -40,9 +40,9 @@ const initialCards = [
     }
 ];
 // Функция открытия-закрытия попапа
-function togglePopup(x) { x.classList.toggle('popup_opened') };
-// Обработчик для редактирования профиля
-// Находим форму для Edit в DOM
+function togglePopup(popups) { popups.classList.toggle('popup_opened') };
+// Обработчик для формы редактирования профиля
+// Находим форму для EditProfile в DOM
 const editProfileForm = editProfilePopup.querySelector('.popup__form');
 // Функция для вставки данных в форму
 const defaultUserData = () => {
@@ -67,6 +67,21 @@ const delCard = (evt) => {
     evt.preventDefault();
     evt.target.closest('.place-card').remove();
 }
+// Open Image function
+const popupImg = document.querySelector('.popup-img');
+const openPopupHeader = popupImg.querySelector('.popup-img__header');
+const openPopupImg = popupImg.querySelector('.popup-img__opened-image');
+const closePopupImg = popupImg.querySelector('.popup-img__close-button');
+const openPopupImgButton = document.querySelector('.place-card__image');
+const openImg = (evt) => {
+    evt.preventDefault();
+    const img = evt.target.closest('.place-card__image');
+    openPopupImg.src = img.src;
+    openPopupHeader.textContent = img.alt;
+    togglePopup(popupImg);
+}
+
+
 // Выводим массив карточек на экран
 function render() {
     initialCards.forEach(item => {
@@ -82,15 +97,17 @@ function renderCard(name, link) {
     const cardHeader = card.querySelector('.place-card__header');
     const cardImg = card.querySelector('.place-card__image');
     cardHeader.innerText = name;
+    cardImg.alt = name;
     cardImg.src = link;
     //like card Mesto
     likeButton.addEventListener('click', likeCard);
     //delete card Mesto
     delButton.addEventListener('click', delCard);
+    //open card img
+    cardImg.addEventListener('click', openImg);
     return card;
 }
-
-// Обработчик для добавления места
+// Обработчик для формы добавления карточки места
 // Находим форму для Add Mesto в DOM
 const addPlaceForm = addPlacePopup.querySelector('.popup__form');
 // Обработчик «отправки» формы, хотя пока
@@ -114,5 +131,6 @@ editProfileButton.addEventListener('click', () => { togglePopup(editProfilePopup
 addPlaceButton.addEventListener('click', () => { togglePopup(addPlacePopup) });
 editProfileCloseButton.addEventListener('click', () => { togglePopup(editProfilePopup) });
 addPlaceCloseButton.addEventListener('click', () => { togglePopup(addPlacePopup) });
+closePopupImg.addEventListener('click', () => { togglePopup(popupImg) });
 
 render();
