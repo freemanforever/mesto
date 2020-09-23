@@ -80,8 +80,6 @@ const openImg = (evt) => {
     openPopupHeader.textContent = img.alt;
     togglePopup(popupImg);
 }
-
-
 // Выводим массив карточек на экран
 function render() {
     initialCards.forEach(item => {
