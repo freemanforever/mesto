@@ -13,7 +13,7 @@
 }
 @media screen and (min-width: 320px) and (max-width: 1023px) {
     .popup__close-button {
-        top: calc(50% - 270px);
-        left: calc(50% + 110px);
+        top: calc(50% - 265px);
+        left: calc(50% + 115px);
     }
 }

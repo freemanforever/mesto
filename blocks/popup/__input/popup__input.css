@@ -1,7 +1,4 @@
-.popup__input {
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 17px;
+.popup__input {    
     width: 350px;
     text-decoration: none;
     border: none;
@@ -14,7 +11,5 @@
     .popup__input {
         width: 200px;
         margin-top: 20px;
-        font-size: 12px;
-        line-height: 14.5px;
-    }
+        }
 }

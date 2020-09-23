@@ -39,8 +39,8 @@
         <div class="popup__container">
           <form name="popupForm" class="popup__form">
             <h3 class="popup__caption typo typo_size_xxl">Редактировать профиль</h3>
-            <input class="popup__input popup__input_name" name="Name" value="">
-            <input class="popup__input popup__input_job" name="Job" value="">
+            <input class="popup__input popup__input_name typo typo_size_s" name="Name" value="">
+            <input class="popup__input popup__input_job typo typo_size_s" name="Job" value="">
             <button class="popup__save-button" type="submit">Сохранить</button>
           </form>
         </div>
@@ -52,8 +52,9 @@
         <div class="popup__container">
           <form name="popupFormPlace" class="popup__form">
             <h3 class="popup__caption typo typo_size_xxl">Новое место</h3>
-            <input class="popup__input popup__input_place-name" name="PlaceName" value="" placeholder="Название">
-            <input class="popup__input popup__input_place-img" name="PlaceImage" value=""
+            <input class="popup__input popup__input_place-name typo typo_size_s" name="PlaceName" value=""
+              placeholder="Название">
+            <input class="popup__input popup__input_place-img typo typo_size_s" name="PlaceImage" value=""
               placeholder="Ссылка на картинку">
             <button class="popup__save-button" type="submit">Создать</button>
           </form>
@@ -62,9 +63,8 @@
 
       <section class="popup popup-img">
         <div class="popup-img__container">
-          <button type="button" class="popup-img__close-button"><img class="popup__close-button-img"
-              src="./images/closeButton.svg" alt="кнопка закрытия формы"></button>
-          <img src="" alt="" class="popup-img__opened-image">
+          <img src="" alt="" class="popup-img__opened-image"><button type="button" class="popup-img__close-button"><img
+              class="popup__close-button-img" src="./images/closeButton.svg" alt="кнопка закрытия формы"></button>
           <h3 class="popup-img__header"></h3>
         </div>
       </section>
