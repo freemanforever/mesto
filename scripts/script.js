@@ -4,7 +4,6 @@ const editProfileButton = document.querySelector('.profile__edit-button');
 const addPlaceButton = document.querySelector('.profile__add-button');
 const editProfileCloseButton = editProfilePopup.querySelector('.popup__close-button');
 const addPlaceCloseButton = addPlacePopup.querySelector('.popup__close-button');
-const saveProfilePopupButton = document.querySelector('.popup__save-button');
 const nameProfile = document.querySelector('.profile__name');
 const jobProfile = document.querySelector('.profile__job');
 const inputName = document.querySelector('.popup__input_name');
@@ -13,6 +12,14 @@ const inputPlaceName = document.querySelector('.popup__input_place-name');
 const inputPlaceImg = document.querySelector('.popup__input_place-img');
 const cardsList = document.querySelector('.places');
 const cardTemplate = document.querySelector('.place-card-template');
+const popupImg = document.querySelector('.popup-img');
+const openPopupHeader = popupImg.querySelector('.popup-img__header');
+const openPopupImg = popupImg.querySelector('.popup-img__opened-image');
+const closePopupImg = popupImg.querySelector('.popup-img__close-button');
+// Находим форму для Add Mesto в DOM
+const addPlaceForm = addPlacePopup.querySelector('.popup__form');
+// Находим форму для EditProfile в DOM
+const editProfileForm = editProfilePopup.querySelector('.popup__form');
 const initialCards = [
     {
         name: 'Архыз',
@@ -41,21 +48,10 @@ const initialCards = [
 ];
 // Функция открытия-закрытия попапа
 function togglePopup(popups) { popups.classList.toggle('popup_opened') };
-// Обработчик для формы редактирования профиля
-// Находим форму для EditProfile в DOM
-const editProfileForm = editProfilePopup.querySelector('.popup__form');
 // Функция для вставки данных в форму
 const defaultUserData = () => {
     inputName.value = nameProfile.textContent;
     inputJob.value = jobProfile.textContent;
-}
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
-function editProfileSubmitHandler(evt) {
-    evt.preventDefault();
-    nameProfile.textContent = inputName.value;
-    jobProfile.textContent = inputJob.value;
-    togglePopup(editProfilePopup);
 }
 // Like card function
 const likeCard = (evt) => {
@@ -68,11 +64,6 @@ const delCard = (evt) => {
     evt.target.closest('.place-card').remove();
 }
 // Open Image function
-const popupImg = document.querySelector('.popup-img');
-const openPopupHeader = popupImg.querySelector('.popup-img__header');
-const openPopupImg = popupImg.querySelector('.popup-img__opened-image');
-const closePopupImg = popupImg.querySelector('.popup-img__close-button');
-const openPopupImgButton = document.querySelector('.place-card__image');
 const openImg = (evt) => {
     evt.preventDefault();
     const img = evt.target.closest('.place-card__image');
@@ -80,12 +71,24 @@ const openImg = (evt) => {
     openPopupHeader.textContent = img.alt;
     togglePopup(popupImg);
 }
-// Выводим массив карточек на экран
-function render() {
-    initialCards.forEach(item => {
-        const card = renderCard(item.name, item.link);
-        cardsList.append(card);
-    });
+// Обработчик «отправки» для формы редактирования профиля
+function editProfileSubmitHandler(evt) {
+    evt.preventDefault();
+    nameProfile.textContent = inputName.value;
+    jobProfile.textContent = inputJob.value;
+    togglePopup(editProfilePopup);
+}
+// Обработчик «отправки» для формы добавления карточки места
+function submitPlaceHandler(evt) {
+    evt.preventDefault();
+    const addCardValues = {
+        name: inputPlaceName.value,
+        link: inputPlaceImg.value
+    }
+    const card = renderCard(addCardValues.name, addCardValues.link);
+    cardsList.prepend(card);
+    togglePopup(addPlacePopup);
+    addPlaceForm.reset();
 }
 // Собираем карточку для вывода на экран
 function renderCard(name, link) {
@@ -105,22 +108,6 @@ function renderCard(name, link) {
     cardImg.addEventListener('click', openImg);
     return card;
 }
-// Обработчик для формы добавления карточки места
-// Находим форму для Add Mesto в DOM
-const addPlaceForm = addPlacePopup.querySelector('.popup__form');
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
-function submitPlaceHandler(evt) {
-    evt.preventDefault();
-    const addCardValues = {
-        name: inputPlaceName.value,
-        link: inputPlaceImg.value
-    }
-    const card = renderCard(addCardValues.name, addCardValues.link);
-    cardsList.prepend(card);
-    togglePopup(addPlacePopup);
-    addPlaceForm.reset();
-}
 //listeners
 editProfileForm.addEventListener('submit', editProfileSubmitHandler);
 addPlaceForm.addEventListener('submit', submitPlaceHandler);
@@ -130,5 +117,11 @@ addPlaceButton.addEventListener('click', () => { togglePopup(addPlacePopup) });
 editProfileCloseButton.addEventListener('click', () => { togglePopup(editProfilePopup) });
 addPlaceCloseButton.addEventListener('click', () => { togglePopup(addPlacePopup) });
 closePopupImg.addEventListener('click', () => { togglePopup(popupImg) });
-
+// Выводим массив карточек на экран
+function render() {
+    initialCards.forEach(item => {
+        const card = renderCard(item.name, item.link);
+        cardsList.append(card);
+    });
+}
 render();
