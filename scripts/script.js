@@ -16,6 +16,8 @@ const popupImg = document.querySelector('.popup-img');
 const openPopupHeader = popupImg.querySelector('.popup-img__header');
 const openPopupImg = popupImg.querySelector('.popup-img__opened-image');
 const closePopupImg = popupImg.querySelector('.popup-img__close-button');
+const submitEditButton = editProfilePopup.querySelector('.popup__save-button');
+const submitAddButton = addPlacePopup.querySelector('.popup__save-button');
 // Находим форму для Add Mesto в DOM
 const addPlaceForm = addPlacePopup.querySelector('.popup__form');
 // Находим форму для EditProfile в DOM
@@ -46,12 +48,28 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
-// Функция открытия-закрытия попапа
-function togglePopup(popups) { popups.classList.toggle('popup_opened') };
-// Функция для вставки данных в форму
-const defaultUserData = () => {
+// Функция открытия-закрытия попапов, и когда открыт, навешиваем слушатели для закрытия попапа
+function togglePopup(popups) {
+    popups.classList.toggle('popup_opened');
+    if (popups.classList.contains('popup_opened')) {
+        document.addEventListener('keydown', closePopupByPressEscape);
+        popups.addEventListener('click', closePopupByClickOverlay);
+    };
+};
+// Функция открытия попапа редактирования профиля
+const openEditPopup = () => {
     inputName.value = nameProfile.textContent;
     inputJob.value = jobProfile.textContent;
+    submitEditButton.classList.add('popup__button_disabled');
+    resetErrorInput(editProfileForm);
+    togglePopup(editProfilePopup);
+}
+//Функция открытия попапа добавления места
+const openAddPopup = () => {
+    submitAddButton.classList.add('popup__button_disabled');
+    addPlaceForm.reset();
+    resetErrorInput(addPlaceForm);
+    togglePopup(addPlacePopup);
 }
 // Like card function
 const likeCard = (evt) => {
@@ -90,6 +108,17 @@ function submitPlaceHandler(evt) {
     togglePopup(addPlacePopup);
     addPlaceForm.reset();
 }
+//Функция закрытия попапа кликом по оверлею
+function closePopupByClickOverlay(event) {
+    const popup = document.querySelector('.popup_opened');
+    if (event.target !== event.currentTarget) { return };
+    togglePopup(popup);
+}
+//Функция закрытия попапа нажатием Escape
+const closePopupByPressEscape = (event) => {
+    const popup = document.querySelector('.popup_opened');
+    if (event.key === 'Escape') { togglePopup(popup); };
+}
 // Собираем карточку для вывода на экран
 function renderCard(name, link) {
     const card = cardTemplate.content.cloneNode(true);
@@ -111,9 +140,8 @@ function renderCard(name, link) {
 //listeners
 editProfileForm.addEventListener('submit', editProfileSubmitHandler);
 addPlaceForm.addEventListener('submit', submitPlaceHandler);
-editProfileButton.addEventListener('click', () => { defaultUserData() });
-editProfileButton.addEventListener('click', () => { togglePopup(editProfilePopup) });
-addPlaceButton.addEventListener('click', () => { togglePopup(addPlacePopup) });
+editProfileButton.addEventListener('click', () => { openEditPopup() });
+addPlaceButton.addEventListener('click', () => { openAddPopup() });
 editProfileCloseButton.addEventListener('click', () => { togglePopup(editProfilePopup) });
 addPlaceCloseButton.addEventListener('click', () => { togglePopup(addPlacePopup) });
 closePopupImg.addEventListener('click', () => { togglePopup(popupImg) });
@@ -125,3 +153,13 @@ function render() {
     });
 }
 render();
+// включение валидации вызовом enableValidation
+// все настройки передаются при вызове
+enableValidation({
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save-button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type-error',
+    errorClass: 'popup__error_visible'
+});
