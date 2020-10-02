@@ -48,28 +48,30 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
-// Функция открытия-закрытия попапов, и когда открыт, навешиваем слушатели для закрытия попапа
-function togglePopup(popups) {
-    popups.classList.toggle('popup_opened');
-    if (popups.classList.contains('popup_opened')) {
-        document.addEventListener('keydown', closePopupByPressEscape);
-        popups.addEventListener('click', closePopupByClickOverlay);
-    };
+// Функция открытия попапа
+function openPopup(popup) {
+    document.addEventListener('keydown', closePopupByPressEscape);
+    popup.addEventListener('mousedown', closePopupByClickOverlay);
+    resetErrorInput(popup);
+    disableButton(popup);
+    popup.classList.add('popup_opened');
 };
+//Функция закрытия попапа
+function closePopup(popup) {
+    popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupByPressEscape);
+    popup.removeEventListener('mousedown', closePopupByClickOverlay);
+}
 // Функция открытия попапа редактирования профиля
 const openEditPopup = () => {
     inputName.value = nameProfile.textContent;
     inputJob.value = jobProfile.textContent;
-    submitEditButton.classList.add('popup__button_disabled');
-    resetErrorInput(editProfileForm);
-    togglePopup(editProfilePopup);
+    openPopup(editProfilePopup);
 }
 //Функция открытия попапа добавления места
 const openAddPopup = () => {
-    submitAddButton.classList.add('popup__button_disabled');
     addPlaceForm.reset();
-    resetErrorInput(addPlaceForm);
-    togglePopup(addPlacePopup);
+    openPopup(addPlacePopup);
 }
 // Like card function
 const likeCard = (evt) => {
@@ -87,14 +89,14 @@ const openImg = (evt) => {
     const img = evt.target.closest('.place-card__image');
     openPopupImg.src = img.src;
     openPopupHeader.textContent = img.alt;
-    togglePopup(popupImg);
+    openPopup(popupImg);
 }
 // Обработчик «отправки» для формы редактирования профиля
 function editProfileSubmitHandler(evt) {
     evt.preventDefault();
     nameProfile.textContent = inputName.value;
     jobProfile.textContent = inputJob.value;
-    togglePopup(editProfilePopup);
+    closePopup(editProfilePopup);
 }
 // Обработчик «отправки» для формы добавления карточки места
 function submitPlaceHandler(evt) {
@@ -105,19 +107,18 @@ function submitPlaceHandler(evt) {
     }
     const card = renderCard(addCardValues.name, addCardValues.link);
     cardsList.prepend(card);
-    togglePopup(addPlacePopup);
+    closePopup(addPlacePopup);
     addPlaceForm.reset();
 }
 //Функция закрытия попапа кликом по оверлею
 function closePopupByClickOverlay(event) {
-    const popup = document.querySelector('.popup_opened');
     if (event.target !== event.currentTarget) { return };
-    togglePopup(popup);
+    closePopup(event.target);
 }
 //Функция закрытия попапа нажатием Escape
 const closePopupByPressEscape = (event) => {
-    const popup = document.querySelector('.popup_opened');
-    if (event.key === 'Escape') { togglePopup(popup); };
+    if (event.key === 'Escape') { document.querySelector('.popup_opened').classList.remove('popup_opened'); };
+    document.removeEventListener('keydown', closePopupByPressEscape);
 }
 // Собираем карточку для вывода на экран
 function renderCard(name, link) {
@@ -142,9 +143,9 @@ editProfileForm.addEventListener('submit', editProfileSubmitHandler);
 addPlaceForm.addEventListener('submit', submitPlaceHandler);
 editProfileButton.addEventListener('click', () => { openEditPopup() });
 addPlaceButton.addEventListener('click', () => { openAddPopup() });
-editProfileCloseButton.addEventListener('click', () => { togglePopup(editProfilePopup) });
-addPlaceCloseButton.addEventListener('click', () => { togglePopup(addPlacePopup) });
-closePopupImg.addEventListener('click', () => { togglePopup(popupImg) });
+editProfileCloseButton.addEventListener('click', () => { closePopup(editProfilePopup) });
+addPlaceCloseButton.addEventListener('click', () => { closePopup(addPlacePopup) });
+closePopupImg.addEventListener('click', () => { closePopup(popupImg) });
 // Выводим массив карточек на экран
 function render() {
     initialCards.forEach(item => {
@@ -152,14 +153,7 @@ function render() {
         cardsList.append(card);
     });
 }
+//отрисуем
 render();
-// включение валидации вызовом enableValidation
-// все настройки передаются при вызове
-enableValidation({
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__save-button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type-error',
-    errorClass: 'popup__error_visible'
-});
+//завалидируем
+enableValidation(values);

@@ -1,67 +1,73 @@
 //выводим сообщение о неправильном вводе в input
-function showInputError(formSelector, inputSelector, errorMessage) {
-    const errorSelector = formSelector.querySelector(`#${inputSelector.id}-error`);
-    inputSelector.classList.add('popup__input_type-error');
-    errorSelector.textContent = errorMessage;
-    errorSelector.classList.add('popup__error_visible');
-}
+function showInputError(formElement, inputElement, errorMessage) {
+    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+    inputElement.classList.add(values.inputErrorClass);
+    errorElement.textContent = errorMessage;
+    errorElement.classList.add(values.errorClass);
+};
 //скрываем сообщение о неправильном вводе в input
-function hideInputError(formSelector, inputSelector) {
-    const errorElement = formSelector.querySelector(`#${inputSelector.id}-error`);
-    inputSelector.classList.remove('popup__input_type-error');
-    errorElement.classList.remove('popup__error_visible');
+function hideInputError(formElement, inputElement) {
+    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+    inputElement.classList.remove(values.inputErrorClass);
+    errorElement.classList.remove(values.errorClass);
     errorElement.textContent = '';
-}
+};
 //проводим проверку валидности input'а,
 //если не валиден, выводим сообщение об ошибке
-function checkInputValidity(formSelector, inputSelector) {
-    if (!inputSelector.validity.valid) {
-        showInputError(formSelector, inputSelector, inputSelector.validationMessage);
+function checkInputValidity(formElement, inputElement) {
+    if (!inputElement.validity.valid) {
+        showInputError(formElement, inputElement, inputElement.validationMessage);
     } else {
-        hideInputError(formSelector, inputSelector);
+        hideInputError(formElement, inputElement);
     }
 }
 //навешиваем на инпуты формы проверку валидности, меняем состояние кнопки отправки данных
-function setEventListeners(formSelector) {
-    const inputList = Array.from(formSelector.querySelectorAll('.popup__input'));
-    const submitButtonSelector = formSelector.querySelector('.popup__save-button');
+function setEventListeners(formElement) {
+    const inputList = Array.from(formElement.querySelectorAll(values.inputSelector));
+    const submitButtonSelector = formElement.querySelector(values.submitButtonSelector);
     toggleButtonState(inputList, submitButtonSelector);
-    inputList.forEach((inputSelector) => {
-        inputSelector.addEventListener('input', function () {
-            checkInputValidity(formSelector, inputSelector);
+    inputList.forEach((inputElement) => {
+        inputElement.addEventListener('input', function () {
+            checkInputValidity(formElement, inputElement);
             toggleButtonState(inputList, submitButtonSelector);
         });
     });
 }
-//запускаем процесс валидации для всех форм
-function enableValidation() {
-    const formList = Array.from(document.querySelectorAll('.popup__form'));
-    formList.forEach((formSelector) => {
-        formSelector.addEventListener('submit', function (evt) {
-            evt.preventDefault();
-        });
-        setEventListeners(formSelector);
-    });
-}
 //проверяем, есть ли из списка инпутов не валидный
 function hasInvalidInput(inputList) {
-    return inputList.some((inputSelector) => {
-        return !inputSelector.validity.valid;
+    return inputList.some((inputElement) => {
+        return !inputElement.validity.valid;
     });
 }
 //изменяем состояние кнопки отправки
 function toggleButtonState(inputList, submitButtonSelector) {
     if (hasInvalidInput(inputList)) {
-        submitButtonSelector.classList.add('popup__button_disabled');
+        submitButtonSelector.classList.add(values.inactiveButtonClass);
     } else {
-        submitButtonSelector.classList.remove('popup__button_disabled');
+        submitButtonSelector.classList.remove(values.inactiveButtonClass);
     };
 }
-//скрываем ошибки из формы
-const resetErrorInput = (formSelector) => {
-    const inputList = formSelector.querySelectorAll('.popup__input');
+//скрываем ошибки из формы и блочим кнопку
+const resetErrorInput = (formElement) => {
+    const inputList = formElement.querySelectorAll(values.inputSelector);
     const inputs = Array.from(inputList);
-    inputs.forEach((inputSelector) => {
-        hideInputError(formSelector, inputSelector);
+    inputs.forEach((inputElement) => {
+        hideInputError(formElement, inputElement);
+    });
+}
+//disable button
+const disableButton = (formElement) => {
+    const submitButton = formElement.querySelector(values.submitButtonSelector);
+    submitButton.classList.add(values.inactiveButtonClass);    
+}
+//запускаем процесс валидации для всех форм
+function enableValidation() {
+    const forms = document.querySelectorAll(values.formSelector);
+    const formList = Array.from(forms);
+    formList.forEach((formElement) => {
+        formElement.addEventListener('submit', function (evt) {
+            evt.preventDefault();
+        });
+        setEventListeners(formElement);
     });
 }
