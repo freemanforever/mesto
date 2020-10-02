@@ -53,7 +53,6 @@ function openPopup(popup) {
     document.addEventListener('keydown', closePopupByPressEscape);
     popup.addEventListener('mousedown', closePopupByClickOverlay);
     resetErrorInput(popup);
-    disableButton(popup);
     popup.classList.add('popup_opened');
 };
 //Функция закрытия попапа
@@ -67,11 +66,13 @@ const openEditPopup = () => {
     inputName.value = nameProfile.textContent;
     inputJob.value = jobProfile.textContent;
     openPopup(editProfilePopup);
+    disableButton(editProfilePopup);
 }
 //Функция открытия попапа добавления места
 const openAddPopup = () => {
     addPlaceForm.reset();
     openPopup(addPlacePopup);
+    disableButton(addPlacePopup);
 }
 // Like card function
 const likeCard = (evt) => {
