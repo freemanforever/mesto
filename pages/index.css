@@ -46,5 +46,3 @@
 @import url(../blocks/popup/__input-error/popup__input-error.css);
 @import url(../blocks/popup/__error/_visible/popup__error_visible.css);
 @import url(../blocks/popup/__input/_type-error/popup__input_type-error.css);
-
-* {outline: 1px royalblue solid;}
