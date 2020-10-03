@@ -65,15 +65,15 @@ function closePopup(popup) {
 const openEditPopup = () => {
     inputName.value = nameProfile.textContent;
     inputJob.value = jobProfile.textContent;
-    disableButton(editProfilePopup);
-    resetErrorInput(editProfilePopup);
+    disableButton(editProfilePopup, params);
+    resetErrorInput(editProfilePopup, params);
     openPopup(editProfilePopup);
 }
 //Функция открытия попапа добавления места
 const openAddPopup = () => {
     addPlaceForm.reset();
-    disableButton(addPlacePopup);
-    resetErrorInput(addPlacePopup);
+    disableButton(addPlacePopup, params);
+    resetErrorInput(addPlacePopup, params);
     openPopup(addPlacePopup);
 }
 // Like card function
