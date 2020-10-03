@@ -2,15 +2,14 @@
     width: 430px;
     background-color: white;
     border-radius: 10px;
-    position: fixed;    
+    position: fixed;
     top: calc(50% - 165px);
     left: calc(50% - 215px);
     display: flex;
     flex-direction: column;
-    
-    
     transition: visibility 0s, opacity 0.5s linear;
 }
+
 @media screen and (min-width: 320px) and (max-width: 1023px) {
     .popup__container {
         width: 240px;

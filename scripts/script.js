@@ -22,6 +22,7 @@ const submitAddButton = addPlacePopup.querySelector('.popup__save-button');
 const addPlaceForm = addPlacePopup.querySelector('.popup__form');
 // Находим форму для EditProfile в DOM
 const editProfileForm = editProfilePopup.querySelector('.popup__form');
+const openedPopup = document.querySelector('.popup__opened');
 const initialCards = [
     {
         name: 'Архыз',
@@ -52,7 +53,6 @@ const initialCards = [
 function openPopup(popup) {
     document.addEventListener('keydown', closePopupByPressEscape);
     popup.addEventListener('mousedown', closePopupByClickOverlay);
-    resetErrorInput(popup);
     popup.classList.add('popup_opened');
 };
 //Функция закрытия попапа
@@ -65,14 +65,16 @@ function closePopup(popup) {
 const openEditPopup = () => {
     inputName.value = nameProfile.textContent;
     inputJob.value = jobProfile.textContent;
-    openPopup(editProfilePopup);
     disableButton(editProfilePopup);
+    resetErrorInput(editProfilePopup);
+    openPopup(editProfilePopup);
 }
 //Функция открытия попапа добавления места
 const openAddPopup = () => {
     addPlaceForm.reset();
-    openPopup(addPlacePopup);
     disableButton(addPlacePopup);
+    resetErrorInput(addPlacePopup);
+    openPopup(addPlacePopup);
 }
 // Like card function
 const likeCard = (evt) => {
@@ -118,8 +120,7 @@ function closePopupByClickOverlay(event) {
 }
 //Функция закрытия попапа нажатием Escape
 const closePopupByPressEscape = (event) => {
-    if (event.key === 'Escape') { document.querySelector('.popup_opened').classList.remove('popup_opened'); };
-    document.removeEventListener('keydown', closePopupByPressEscape);
+    if (event.key === 'Escape') { closePopup(document.querySelector('.popup_opened')) };
 }
 // Собираем карточку для вывода на экран
 function renderCard(name, link) {
@@ -157,4 +158,4 @@ function render() {
 //отрисуем
 render();
 //завалидируем
-enableValidation(values);
+enableValidation(params);

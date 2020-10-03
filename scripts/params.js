@@ -1,5 +1,5 @@
 //глобальный объект с параметрами для реализации валидации
-const values = {
+const params = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__save-button',
