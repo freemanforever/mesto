@@ -6,10 +6,10 @@ function showInputError(formElement, inputElement, errorMessage, {inputErrorClas
     errorElement.classList.add(errorClass);
 };
 //скрываем сообщение о неправильном вводе в input
-function hideInputError(formElement, inputElement) {
+function hideInputError(formElement, inputElement, {inputErrorClass, errorClass}) {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-    inputElement.classList.remove(params.inputErrorClass);
-    errorElement.classList.remove(params.errorClass);
+    inputElement.classList.remove(inputErrorClass);
+    errorElement.classList.remove(errorClass);
     errorElement.textContent = '';
 };
 //проводим проверку валидности input'а,
@@ -18,7 +18,7 @@ function checkInputValidity(formElement, inputElement) {
     if (!inputElement.validity.valid) {
         showInputError(formElement, inputElement, inputElement.validationMessage, params);
     } else {
-        hideInputError(formElement, inputElement);
+        hideInputError(formElement, inputElement, params);
     }
 }
 //навешиваем на инпуты формы проверку валидности, меняем состояние кнопки отправки данных
@@ -52,7 +52,7 @@ const resetErrorInput = (formElement) => {
     const inputList = formElement.querySelectorAll(params.inputSelector);
     const inputs = Array.from(inputList);
     inputs.forEach((inputElement) => {
-        hideInputError(formElement, inputElement);
+        hideInputError(formElement, inputElement, params);
     });
 }
 //disable button
