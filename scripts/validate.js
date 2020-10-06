@@ -4,7 +4,7 @@ const params = {
     submitButtonSelector: '.popup__save-button',
     inactiveButtonClass: 'popup__button_disabled',
     inputErrorClass: 'popup__input_type-error',
-    errorClass: 'popup__error_visible'
+    errorClass: 'popup__error_visible',
 }
 //выводим сообщение о неправильном вводе в input 
 const showInputError = (formElement, inputElement, errorMessage, params) => {
@@ -44,22 +44,22 @@ const resetErrorInput = (formElement, params) => {
     });
 }
 //изменяем состояние кнопки отправки 
-function toggleButtonState(inputList, submitButton) {
+function toggleButtonState(inputList, submitButton, params) {
     if (hasInvalidInput(inputList)) {
-        submitButton.classList.add('popup__button_disabled');
+        submitButton.classList.add(params.inactiveButtonClass);
     } else {
-        submitButton.classList.remove('popup__button_disabled');
+        submitButton.classList.remove(params.inactiveButtonClass);
     };
 }
 //навешиваем на инпуты формы проверку валидности, меняем состояние кнопки отправки данных 
 const setEventListeners = (formElement, params) => {
     const inputList = Array.from(formElement.querySelectorAll(params.inputSelector));
     const submitButton = formElement.querySelector(params.submitButtonSelector);
-    toggleButtonState(inputList, submitButton);
+    toggleButtonState(inputList, submitButton, params);
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', function () {
             checkInputValidity(formElement, inputElement, params);
-            toggleButtonState(inputList, submitButton);
+            toggleButtonState(inputList, submitButton, params);
         });
     });
 }
