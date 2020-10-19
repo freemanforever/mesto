@@ -1,3 +1,11 @@
+/* <script src="./scripts/cards.js" defer></script>
+<script src="./scripts/Card.js" defer></script>
+<script src="./scripts/FormValidator.js" defer></script> 
+import classes 
+*/
+import { config, startCards } from './config.js';
+import Card from './Card.js';
+
 const editProfilePopup = document.querySelector('.popup-profile-edit');
 const addPlacePopup = document.querySelector('.popup-place-add');
 const editProfileButton = document.querySelector('.profile__edit-button');
@@ -23,32 +31,7 @@ const addPlaceForm = addPlacePopup.querySelector('.popup__form');
 // Находим форму для EditProfile в DOM
 const editProfileForm = editProfilePopup.querySelector('.popup__form');
 const openedPopup = document.querySelector('.popup__opened');
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
+
 // Функция открытия попапа
 function openPopup(popup) {
     document.addEventListener('keydown', closePopupByPressEscape);
@@ -65,15 +48,15 @@ function closePopup(popup) {
 const openEditPopup = () => {
     inputName.value = nameProfile.textContent;
     inputJob.value = jobProfile.textContent;
-    disableButton(editProfilePopup, params);
-    resetErrorInput(editProfilePopup, params);
+    disableButton(editProfilePopup, config);
+    resetErrorInput(editProfilePopup, config);
     openPopup(editProfilePopup);
 }
 //Функция открытия попапа добавления места
 const openAddPopup = () => {
     addPlaceForm.reset();
-    disableButton(addPlacePopup, params);
-    resetErrorInput(addPlacePopup, params);
+    disableButton(addPlacePopup, config);
+    resetErrorInput(addPlacePopup, config);
     openPopup(addPlacePopup);
 }
 // Like card function
@@ -150,7 +133,7 @@ addPlaceCloseButton.addEventListener('click', () => { closePopup(addPlacePopup) 
 closePopupImg.addEventListener('click', () => { closePopup(popupImg) });
 // Выводим массив карточек на экран
 function render() {
-    initialCards.forEach(item => {
+    startCards.forEach(item => {
         const card = renderCard(item.name, item.link);
         cardsList.append(card);
     });
@@ -158,4 +141,4 @@ function render() {
 //отрисуем
 render();
 //завалидируем
-enableValidation(params);
+//enableValidation(config);
