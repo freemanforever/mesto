@@ -1,9 +1,4 @@
-/* <script src="./scripts/cards.js" defer></script>
-<script src="./scripts/Card.js" defer></script>
-<script src="./scripts/FormValidator.js" defer></script> 
-import classes 
-*/
-import { config, startCards } from './config.js';
+import { startCards, config } from './config.js';
 import Card from './Card.js';
 
 const editProfilePopup = document.querySelector('.popup-profile-edit');
@@ -19,11 +14,7 @@ const inputJob = document.querySelector('.popup__input_job');
 const inputPlaceName = document.querySelector('.popup__input_place-name');
 const inputPlaceImg = document.querySelector('.popup__input_place-img');
 const cardsList = document.querySelector('.places');
-const cardTemplate = document.querySelector('.place-card-template');
-const popupImg = document.querySelector('.popup-img');
-const openPopupHeader = popupImg.querySelector('.popup-img__header');
-const openPopupImg = popupImg.querySelector('.popup-img__opened-image');
-const closePopupImg = popupImg.querySelector('.popup-img__close-button');
+
 const submitEditButton = editProfilePopup.querySelector('.popup__save-button');
 const submitAddButton = addPlacePopup.querySelector('.popup__save-button');
 // Находим форму для Add Mesto в DOM
@@ -31,52 +22,30 @@ const addPlaceForm = addPlacePopup.querySelector('.popup__form');
 // Находим форму для EditProfile в DOM
 const editProfileForm = editProfilePopup.querySelector('.popup__form');
 const openedPopup = document.querySelector('.popup__opened');
-
-// Функция открытия попапа
-function openPopup(popup) {
+const places = document.querySelector('.places');
+export const popupImg = document.querySelector('.popup-img');
+// Функция открытия-закрытия попапа
+export function togglePopup(popup) {
     document.addEventListener('keydown', closePopupByPressEscape);
     popup.addEventListener('mousedown', closePopupByClickOverlay);
-    popup.classList.add('popup_opened');
+    popup.classList.toggle('popup_opened');
 };
-//Функция закрытия попапа
-function closePopup(popup) {
-    popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', closePopupByPressEscape);
-    popup.removeEventListener('mousedown', closePopupByClickOverlay);
-}
 // Функция открытия попапа редактирования профиля
 const openEditPopup = () => {
     inputName.value = nameProfile.textContent;
     inputJob.value = jobProfile.textContent;
-    disableButton(editProfilePopup, config);
-    resetErrorInput(editProfilePopup, config);
-    openPopup(editProfilePopup);
+    //disableButton(editProfilePopup, config);
+    //resetErrorInput(editProfilePopup, config);
+    togglePopup(editProfilePopup);
 }
 //Функция открытия попапа добавления места
 const openAddPopup = () => {
     addPlaceForm.reset();
-    disableButton(addPlacePopup, config);
-    resetErrorInput(addPlacePopup, config);
-    openPopup(addPlacePopup);
+    //disableButton(addPlacePopup, config);
+    //resetErrorInput(addPlacePopup, config);
+    togglePopup(addPlacePopup);
 }
-// Like card function
-const likeCard = (evt) => {
-    evt.preventDefault();
-    evt.target.classList.toggle('place-card__like');
-}
-// Delete card function
-const delCard = (evt) => {
-    evt.preventDefault();
-    evt.target.closest('.place-card').remove();
-}
-// Open Image function
-const openImg = (evt) => {
-    evt.preventDefault();
-    const img = evt.target.closest('.place-card__image');
-    openPopupImg.src = img.src;
-    openPopupHeader.textContent = img.alt;
-    openPopup(popupImg);
-}
+
 // Обработчик «отправки» для формы редактирования профиля
 function editProfileSubmitHandler(evt) {
     evt.preventDefault();
@@ -99,46 +68,28 @@ function submitPlaceHandler(evt) {
 //Функция закрытия попапа кликом по оверлею
 function closePopupByClickOverlay(event) {
     if (event.target !== event.currentTarget) { return };
-    closePopup(event.target);
+    togglePopup(event.target);
 }
 //Функция закрытия попапа нажатием Escape
 const closePopupByPressEscape = (event) => {
-    if (event.key === 'Escape') { closePopup(document.querySelector('.popup_opened')) };
-}
-// Собираем карточку для вывода на экран
-function renderCard(name, link) {
-    const card = cardTemplate.content.cloneNode(true);
-    const likeButton = card.querySelector('.place-card__like-button');
-    const delButton = card.querySelector('.place-card__recycleButton');
-    const cardHeader = card.querySelector('.place-card__header');
-    const cardImg = card.querySelector('.place-card__image');
-    cardHeader.innerText = name;
-    cardImg.alt = name;
-    cardImg.src = link;
-    //like card Mesto
-    likeButton.addEventListener('click', likeCard);
-    //delete card Mesto
-    delButton.addEventListener('click', delCard);
-    //open card img
-    cardImg.addEventListener('click', openImg);
-    return card;
+    if (event.key === 'Escape') { togglePopup(document.querySelector('.popup_opened')) };
 }
 //listeners
 editProfileForm.addEventListener('submit', editProfileSubmitHandler);
 addPlaceForm.addEventListener('submit', submitPlaceHandler);
 editProfileButton.addEventListener('click', () => { openEditPopup() });
 addPlaceButton.addEventListener('click', () => { openAddPopup() });
-editProfileCloseButton.addEventListener('click', () => { closePopup(editProfilePopup) });
-addPlaceCloseButton.addEventListener('click', () => { closePopup(addPlacePopup) });
-closePopupImg.addEventListener('click', () => { closePopup(popupImg) });
+editProfileCloseButton.addEventListener('click', () => { togglePopup(editProfilePopup) });
+addPlaceCloseButton.addEventListener('click', () => { togglePopup(addPlacePopup) });
+//closePopupImg.addEventListener('click', () => { togglePopup(popupImg) });
 // Выводим массив карточек на экран
-function render() {
-    startCards.forEach(item => {
-        const card = renderCard(item.name, item.link);
-        cardsList.append(card);
-    });
-}
+startCards.forEach(({ name, link }) => {
+    const card = new Card({ name, link }, '.place-card-template');
+    const cardElement = card.getElement();
+    places.append(cardElement);
+});
+
 //отрисуем
-render();
+//render();
 //завалидируем
 //enableValidation(config);

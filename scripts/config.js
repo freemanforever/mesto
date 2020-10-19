@@ -30,5 +30,5 @@ export const config = {
     submitButtonSelector: '.popup__save-button',
     inactiveButtonClass: 'popup__button_disabled',
     inputErrorClass: 'popup__input_type-error',
-    errorClass: 'popup__error_visible',
+    errorClass: 'popup__error_visible'
 }

@@ -1,4 +1,3 @@
-.place-card__like {
-    background-image: url(../../../images/likedButton.svg);
-    display: none;
+.place-card__liked {
+    background: url(../../../images/likedButton.svg) no-repeat center;
 }
