@@ -1,12 +1,13 @@
 import { startCards, config } from './config.js';
 import Card from './Card.js';
-
 const editProfilePopup = document.querySelector('.popup-profile-edit');
 const addPlacePopup = document.querySelector('.popup-place-add');
+export const popupImg = document.querySelector('.popup-img');
 const editProfileButton = document.querySelector('.profile__edit-button');
 const addPlaceButton = document.querySelector('.profile__add-button');
 const editProfileCloseButton = editProfilePopup.querySelector('.popup__close-button');
 const addPlaceCloseButton = addPlacePopup.querySelector('.popup__close-button');
+const closePopupImg = document.querySelector('.popup-img__close-button');
 const nameProfile = document.querySelector('.profile__name');
 const jobProfile = document.querySelector('.profile__job');
 const inputName = document.querySelector('.popup__input_name');
@@ -14,16 +15,10 @@ const inputJob = document.querySelector('.popup__input_job');
 const inputPlaceName = document.querySelector('.popup__input_place-name');
 const inputPlaceImg = document.querySelector('.popup__input_place-img');
 const cardsList = document.querySelector('.places');
-
-const submitEditButton = editProfilePopup.querySelector('.popup__save-button');
-const submitAddButton = addPlacePopup.querySelector('.popup__save-button');
 // Находим форму для Add Mesto в DOM
 const addPlaceForm = addPlacePopup.querySelector('.popup__form');
 // Находим форму для EditProfile в DOM
 const editProfileForm = editProfilePopup.querySelector('.popup__form');
-const openedPopup = document.querySelector('.popup__opened');
-const places = document.querySelector('.places');
-export const popupImg = document.querySelector('.popup-img');
 // Функция открытия-закрытия попапа
 export function togglePopup(popup) {
     document.addEventListener('keydown', closePopupByPressEscape);
@@ -45,13 +40,12 @@ const openAddPopup = () => {
     //resetErrorInput(addPlacePopup, config);
     togglePopup(addPlacePopup);
 }
-
 // Обработчик «отправки» для формы редактирования профиля
 function editProfileSubmitHandler(evt) {
     evt.preventDefault();
     nameProfile.textContent = inputName.value;
     jobProfile.textContent = inputJob.value;
-    closePopup(editProfilePopup);
+    togglePopup(editProfilePopup);
 }
 // Обработчик «отправки» для формы добавления карточки места
 function submitPlaceHandler(evt) {
@@ -60,9 +54,10 @@ function submitPlaceHandler(evt) {
         name: inputPlaceName.value,
         link: inputPlaceImg.value
     }
-    const card = renderCard(addCardValues.name, addCardValues.link);
-    cardsList.prepend(card);
-    closePopup(addPlacePopup);
+    const card = new Card(addCardValues, '.place-card-template');
+    const cardElement = card.getElement();
+    cardsList.prepend(cardElement);
+    togglePopup(addPlacePopup);
     addPlaceForm.reset();
 }
 //Функция закрытия попапа кликом по оверлею
@@ -81,15 +76,12 @@ editProfileButton.addEventListener('click', () => { openEditPopup() });
 addPlaceButton.addEventListener('click', () => { openAddPopup() });
 editProfileCloseButton.addEventListener('click', () => { togglePopup(editProfilePopup) });
 addPlaceCloseButton.addEventListener('click', () => { togglePopup(addPlacePopup) });
-//closePopupImg.addEventListener('click', () => { togglePopup(popupImg) });
+closePopupImg.addEventListener('click', () => { togglePopup(popupImg) });
 // Выводим массив карточек на экран
 startCards.forEach(({ name, link }) => {
     const card = new Card({ name, link }, '.place-card-template');
     const cardElement = card.getElement();
-    places.append(cardElement);
+    cardsList.append(cardElement);
 });
-
-//отрисуем
-//render();
 //завалидируем
 //enableValidation(config);

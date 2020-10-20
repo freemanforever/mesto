@@ -9,6 +9,14 @@ export default class Card {
         const cardElement = document.querySelector(this._cardSelector).content.querySelector('.place-card').cloneNode(true);
         return cardElement;
     }
+    getElement() {
+        this._element = this._getTemplate();
+        this._element.querySelector('.place-card__header').textContent = this._name;
+        this._element.querySelector('.place-card__image').src = this._link;
+        this._element.querySelector('.place-card__image').alt = this._name;
+        this._setListeners();
+        return this._element;
+    }
     _likeCard() {
         this._element.querySelector('.place-card__like-button').classList.toggle('place-card__liked');
     }
@@ -19,7 +27,7 @@ export default class Card {
         const openPopupHeader = document.querySelector('.popup-img__header');
         const openPopupImg = document.querySelector('.popup-img__opened-image');
         const img = this._element.querySelector('.place-card__image');
-        openPopupImg.src = img.link;
+        openPopupImg.src = img.src;
         openPopupHeader.textContent = img.name;
         togglePopup(popupImg);
     }
@@ -28,12 +36,5 @@ export default class Card {
         this._element.querySelector('.place-card__recycleButton').addEventListener('click', () => this._delCard());
         this._element.querySelector('.place-card__image').addEventListener('click', () => this._openImg());
     }
-    getElement() {
-        this._element = this._getTemplate();
-        this._element.querySelector('.place-card__header').textContent = this._name;
-        this._element.querySelector('.place-card__image').src = this._link;
-        this._element.querySelector('.place-card__image').alt = this._name;
-        this._setListeners();
-        return this._element;
-    }
+
 } 
