@@ -1,5 +1,6 @@
 import { startCards, config } from './config.js';
 import Card from './Card.js';
+import FormValidator from './FormValidator.js';
 const editProfilePopup = document.querySelector('.popup-profile-edit');
 const addPlacePopup = document.querySelector('.popup-place-add');
 export const popupImg = document.querySelector('.popup-img');
@@ -30,14 +31,14 @@ const openEditPopup = () => {
     inputName.value = nameProfile.textContent;
     inputJob.value = jobProfile.textContent;
     //disableButton(editProfilePopup, config);
-    //resetErrorInput(editProfilePopup, config);
+    //resetErrorInput(editProfilePopup);
     togglePopup(editProfilePopup);
 }
 //Функция открытия попапа добавления места
 const openAddPopup = () => {
     addPlaceForm.reset();
     //disableButton(addPlacePopup, config);
-    //resetErrorInput(addPlacePopup, config);
+    //resetErrorInput(addPlacePopup);
     togglePopup(addPlacePopup);
 }
 // Обработчик «отправки» для формы редактирования профиля
@@ -69,6 +70,11 @@ function closePopupByClickOverlay(event) {
 const closePopupByPressEscape = (event) => {
     if (event.key === 'Escape') { togglePopup(document.querySelector('.popup_opened')) };
 }
+// //disable button 
+// disableButton(formElement, { inactiveButtonClass, submitButtonSelector }) {
+//     const submitButton = formElement.querySelector(submitButtonSelector);
+//     submitButton.classList.add(inactiveButtonClass);
+// }
 //listeners
 editProfileForm.addEventListener('submit', editProfileSubmitHandler);
 addPlaceForm.addEventListener('submit', submitPlaceHandler);
@@ -83,5 +89,8 @@ startCards.forEach(({ name, link }) => {
     const cardElement = card.getElement();
     cardsList.append(cardElement);
 });
-//завалидируем
-//enableValidation(config);
+//валидация форм
+const popupFormPlaceValidator = new FormValidator(config.popupFormPlace, config);
+popupFormPlaceValidator.enableValidation()
+const popupFormValidator = new FormValidator(config.popupForm, config);
+popupFormValidator.enableValidation()
