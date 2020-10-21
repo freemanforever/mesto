@@ -1,4 +1,3 @@
-import { startCards, config } from './config.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 const editProfilePopup = document.querySelector('.popup-profile-edit');
@@ -20,6 +19,42 @@ const cardsList = document.querySelector('.places');
 const addPlaceForm = addPlacePopup.querySelector('.popup__form');
 // Находим форму для EditProfile в DOM
 const editProfileForm = editProfilePopup.querySelector('.popup__form');
+const startCards = [
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
+const config = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save-button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type-error',
+    errorClass: 'popup__error_visible',
+    popupFormPlace: '.form_place',
+    popupForm: '.form_profile'
+}
 // Функция открытия-закрытия попапа
 export function togglePopup(popup) {
     document.addEventListener('keydown', closePopupByPressEscape);
@@ -30,14 +65,12 @@ export function togglePopup(popup) {
 const openEditPopup = () => {
     inputName.value = nameProfile.textContent;
     inputJob.value = jobProfile.textContent;
-    //disableButton(editProfilePopup, config);
     //resetErrorInput(editProfilePopup);
     togglePopup(editProfilePopup);
 }
 //Функция открытия попапа добавления места
 const openAddPopup = () => {
     addPlaceForm.reset();
-    //disableButton(addPlacePopup, config);
     //resetErrorInput(addPlacePopup);
     togglePopup(addPlacePopup);
 }
@@ -70,11 +103,6 @@ function closePopupByClickOverlay(event) {
 const closePopupByPressEscape = (event) => {
     if (event.key === 'Escape') { togglePopup(document.querySelector('.popup_opened')) };
 }
-// //disable button 
-// disableButton(formElement, { inactiveButtonClass, submitButtonSelector }) {
-//     const submitButton = formElement.querySelector(submitButtonSelector);
-//     submitButton.classList.add(inactiveButtonClass);
-// }
 //listeners
 editProfileForm.addEventListener('submit', editProfileSubmitHandler);
 addPlaceForm.addEventListener('submit', submitPlaceHandler);
@@ -90,7 +118,7 @@ startCards.forEach(({ name, link }) => {
     cardsList.append(cardElement);
 });
 //валидация форм
-const popupFormPlaceValidator = new FormValidator(config.popupFormPlace, config);
-popupFormPlaceValidator.enableValidation()
-const popupFormValidator = new FormValidator(config.popupForm, config);
-popupFormValidator.enableValidation()
+const popupForm = new FormValidator(config, editProfileForm);
+const popupFormPlace = new FormValidator(config, addPlaceForm);
+popupForm.enableValidation();
+popupFormPlace.enableValidation();
