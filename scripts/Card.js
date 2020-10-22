@@ -36,5 +36,4 @@ export default class Card {
         this._element.querySelector('.place-card__recycleButton').addEventListener('click', () => this._delCard());
         this._element.querySelector('.place-card__image').addEventListener('click', () => this._openImg());
     }
-
 } 
