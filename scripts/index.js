@@ -52,8 +52,6 @@ const config = {
     inactiveButtonClass: 'popup__button_disabled',
     inputErrorClass: 'popup__input_type-error',
     errorClass: 'popup__error_visible',
-    popupFormPlace: '.form_place',
-    popupForm: '.form_profile'
 }
 // Функция открытия-закрытия попапа
 export function togglePopup(popup) {
@@ -65,13 +63,15 @@ export function togglePopup(popup) {
 const openEditPopup = () => {
     inputName.value = nameProfile.textContent;
     inputJob.value = jobProfile.textContent;
-    //resetErrorInput(editProfilePopup);
+    popupForm.resetInputError();
+    popupForm.disableButton();
     togglePopup(editProfilePopup);
 }
 //Функция открытия попапа добавления места
 const openAddPopup = () => {
     addPlaceForm.reset();
-    //resetErrorInput(addPlacePopup);
+    popupFormPlace.resetInputError();
+    popupFormPlace.disableButton();
     togglePopup(addPlacePopup);
 }
 // Обработчик «отправки» для формы редактирования профиля
