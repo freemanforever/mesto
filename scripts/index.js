@@ -53,33 +53,39 @@ const config = {
     inputErrorClass: 'popup__input_type-error',
     errorClass: 'popup__error_visible',
 }
-// Функция открытия-закрытия попапа
-export function togglePopup(popup) {
-    document.addEventListener('keydown', closePopupByPressEscape);
-    popup.addEventListener('mousedown', closePopupByClickOverlay);
-    popup.classList.toggle('popup_opened');
-};
+// Функция открытия попапа 
+export function openPopup(popup) { 
+    document.addEventListener('keydown', closePopupByPressEscape); 
+    popup.addEventListener('mousedown', closePopupByClickOverlay); 
+    popup.classList.add('popup_opened'); 
+}; 
+//Функция закрытия попапа 
+function closePopup(popup) { 
+    popup.classList.remove('popup_opened'); 
+    document.removeEventListener('keydown', closePopupByPressEscape); 
+    popup.removeEventListener('mousedown', closePopupByClickOverlay); 
+} 
 // Функция открытия попапа редактирования профиля
 const openEditPopup = () => {
     inputName.value = nameProfile.textContent;
     inputJob.value = jobProfile.textContent;
     popupForm.resetInputError();
     popupForm.disableButton();
-    togglePopup(editProfilePopup);
+    openPopup(editProfilePopup);
 }
 //Функция открытия попапа добавления места
 const openAddPopup = () => {
     addPlaceForm.reset();
     popupFormPlace.resetInputError();
     popupFormPlace.disableButton();
-    togglePopup(addPlacePopup);
+    openPopup(addPlacePopup);
 }
 // Обработчик «отправки» для формы редактирования профиля
 function editProfileSubmitHandler(evt) {
     evt.preventDefault();
     nameProfile.textContent = inputName.value;
     jobProfile.textContent = inputJob.value;
-    togglePopup(editProfilePopup);
+    closePopup(editProfilePopup);
 }
 // Обработчик «отправки» для формы добавления карточки места
 function submitPlaceHandler(evt) {
@@ -91,26 +97,26 @@ function submitPlaceHandler(evt) {
     const card = new Card(addCardValues, '.place-card-template');
     const cardElement = card.getElement();
     cardsList.prepend(cardElement);
-    togglePopup(addPlacePopup);
+    closePopup(addPlacePopup);
     addPlaceForm.reset();
 }
 //Функция закрытия попапа кликом по оверлею
 function closePopupByClickOverlay(event) {
     if (event.target !== event.currentTarget) { return };
-    togglePopup(event.target);
+    closePopup(event.target);
 }
 //Функция закрытия попапа нажатием Escape
 const closePopupByPressEscape = (event) => {
-    if (event.key === 'Escape') { togglePopup(document.querySelector('.popup_opened')) };
+    if (event.key === 'Escape') { closePopup(document.querySelector('.popup_opened')) };
 }
 //listeners
 editProfileForm.addEventListener('submit', editProfileSubmitHandler);
 addPlaceForm.addEventListener('submit', submitPlaceHandler);
 editProfileButton.addEventListener('click', () => { openEditPopup() });
 addPlaceButton.addEventListener('click', () => { openAddPopup() });
-editProfileCloseButton.addEventListener('click', () => { togglePopup(editProfilePopup) });
-addPlaceCloseButton.addEventListener('click', () => { togglePopup(addPlacePopup) });
-closePopupImg.addEventListener('click', () => { togglePopup(popupImg) });
+editProfileCloseButton.addEventListener('click', () => { closePopup(editProfilePopup) });
+addPlaceCloseButton.addEventListener('click', () => { closePopup(addPlacePopup) });
+closePopupImg.addEventListener('click', () => { closePopup(popupImg) });
 // Выводим массив карточек на экран
 startCards.forEach(({ name, link }) => {
     const card = new Card({ name, link }, '.place-card-template');
