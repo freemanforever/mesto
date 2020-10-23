@@ -17,7 +17,7 @@ const inputPlaceImg = document.querySelector('.popup__input_place-img');
 const cardsList = document.querySelector('.places');
 // Находим форму для Add Mesto в DOM
 const addPlaceForm = addPlacePopup.querySelector('.popup__form');
-// Находим форму для EditProfile в DOM
+// Находим форму для Edit Profile в DOM
 const editProfileForm = editProfilePopup.querySelector('.popup__form');
 const startCards = [
     {
@@ -53,6 +53,8 @@ const config = {
     inputErrorClass: 'popup__input_type-error',
     errorClass: 'popup__error_visible',
 }
+const popupForm = new FormValidator(config, editProfileForm);
+const popupFormPlace = new FormValidator(config, addPlaceForm);
 // Функция открытия попапа 
 export function openPopup(popup) { 
     document.addEventListener('keydown', closePopupByPressEscape); 
@@ -124,7 +126,5 @@ startCards.forEach(({ name, link }) => {
     cardsList.append(cardElement);
 });
 //валидация форм
-const popupForm = new FormValidator(config, editProfileForm);
-const popupFormPlace = new FormValidator(config, addPlaceForm);
 popupForm.enableValidation();
 popupFormPlace.enableValidation();
