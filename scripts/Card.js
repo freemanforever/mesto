@@ -6,7 +6,11 @@ export default class Card {
         this._cardSelector = cardSelector;
     }
     _getTemplate() {
-        const cardElement = document.querySelector(this._cardSelector).content.querySelector('.place-card').cloneNode(true);
+        const cardElement = document
+            .querySelector(this._cardSelector)
+            .content
+            .querySelector('.place-card')
+            .cloneNode(true);
         return cardElement;
     }
     getElement() {
