@@ -1,5 +1,5 @@
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
 const editProfilePopup = document.querySelector('.popup-profile-edit');
 const addPlacePopup = document.querySelector('.popup-place-add');
 export const popupImg = document.querySelector('.popup-img');
@@ -56,17 +56,17 @@ const config = {
 const popupForm = new FormValidator(config, editProfileForm);
 const popupFormPlace = new FormValidator(config, addPlaceForm);
 // Функция открытия попапа 
-export function openPopup(popup) { 
-    document.addEventListener('keydown', closePopupByPressEscape); 
-    popup.addEventListener('mousedown', closePopupByClickOverlay); 
-    popup.classList.add('popup_opened'); 
-}; 
+export function openPopup(popup) {
+    document.addEventListener('keydown', closePopupByPressEscape);
+    popup.addEventListener('mousedown', closePopupByClickOverlay);
+    popup.classList.add('popup_opened');
+};
 //Функция закрытия попапа 
-function closePopup(popup) { 
-    popup.classList.remove('popup_opened'); 
-    document.removeEventListener('keydown', closePopupByPressEscape); 
-    popup.removeEventListener('mousedown', closePopupByClickOverlay); 
-} 
+function closePopup(popup) {
+    popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupByPressEscape);
+    popup.removeEventListener('mousedown', closePopupByClickOverlay);
+}
 // Функция открытия попапа редактирования профиля
 const openEditPopup = () => {
     inputName.value = nameProfile.textContent;
