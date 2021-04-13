@@ -1,58 +1,14 @@
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
-const editProfilePopup = document.querySelector('.popup-profile-edit');
-const addPlacePopup = document.querySelector('.popup-place-add');
-export const popupImg = document.querySelector('.popup-img');
-const editProfileButton = document.querySelector('.profile__edit-button');
-const addPlaceButton = document.querySelector('.profile__add-button');
-const editProfileCloseButton = editProfilePopup.querySelector('.popup__close-button');
-const addPlaceCloseButton = addPlacePopup.querySelector('.popup__close-button');
-const closePopupImg = document.querySelector('.popup-img__close-button');
-const nameProfile = document.querySelector('.profile__name');
-const jobProfile = document.querySelector('.profile__job');
-const inputName = document.querySelector('.popup__input_name');
-const inputJob = document.querySelector('.popup__input_job');
-const inputPlaceName = document.querySelector('.popup__input_place-name');
-const inputPlaceImg = document.querySelector('.popup__input_place-img');
-const cardsList = document.querySelector('.places');
-// Находим форму для Add Mesto в DOM
-const addPlaceForm = addPlacePopup.querySelector('.popup__form');
-// Находим форму для Edit Profile в DOM
-const editProfileForm = editProfilePopup.querySelector('.popup__form');
-const startCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-const config = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__save-button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type-error',
-    errorClass: 'popup__error_visible',
-}
+import Section from '../components/Section.js';
+// import PopupWithImage from '../components/PopupWithImage.js';
+// import PopupWithForm from '../components/PopupWithForm.js';
+// import UserInfo from '../components/UserInfo.js';
+import {
+    editProfilePopup, addPlacePopup, popupImg, editProfileButton, addPlaceButton,
+    editProfileCloseButton, addPlaceCloseButton, closePopupImg, nameProfile, jobProfile,
+    inputName, inputJob, inputPlaceName, inputPlaceImg, cardsList, addPlaceForm, editProfileForm, startCards, config
+} from '../utils/constants.js';
 const popupForm = new FormValidator(config, editProfileForm);
 const popupFormPlace = new FormValidator(config, addPlaceForm);
 // Функция открытия попапа 

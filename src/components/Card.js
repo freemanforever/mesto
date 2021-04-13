@@ -1,4 +1,5 @@
-import { openPopup, popupImg } from '../pages/index.js';
+import { openPopup } from '../pages/index.js';
+import { popupImg } from '../utils/constants.js';
 export default class Card {
     constructor({ name, link }, cardSelector) {
         this._name = name;
@@ -41,4 +42,4 @@ export default class Card {
         this._element.querySelector('.place-card__recycleButton').addEventListener('click', () => this._delCard());
         this._element.querySelector('.place-card__image').addEventListener('click', () => this._openImg());
     }
-} 
+}
