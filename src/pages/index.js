@@ -9,8 +9,7 @@ import {
     editProfileCloseButton, addPlaceCloseButton, closePopupImg, nameProfile, jobProfile,
     inputName, inputJob, inputPlaceName, inputPlaceImg, cardsList, addPlaceForm, editProfileForm, startCards, config
 } from '../utils/constants.js';
-const popupForm = new FormValidator(config, editProfileForm);
-const popupFormPlace = new FormValidator(config, addPlaceForm);
+
 // Функция открытия попапа 
 export function openPopup(popup) {
     document.addEventListener('keydown', closePopupByPressEscape);
@@ -82,5 +81,7 @@ startCards.forEach(({ name, link }) => {
     cardsList.append(cardElement);
 });
 //валидация форм
+const popupForm = new FormValidator(config, editProfileForm);
+const popupFormPlace = new FormValidator(config, addPlaceForm);
 popupForm.enableValidation();
 popupFormPlace.enableValidation();
