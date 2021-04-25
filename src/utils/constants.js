@@ -1,9 +1,21 @@
-export const editProfilePopup = document.querySelector('.popup-profile-edit');
+export const formConfig = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save-button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type-error',
+    errorClass: 'popup__error_visible',
+}
+export const popupConfig = {
+    editProfilePopup: '.popup-profile-edit',
+    addCardPopup: 'popup-place-add',
+    imagePopup: 'popup-img'
+}
 export const addPlacePopup = document.querySelector('.popup-place-add');
 export const popupImg = document.querySelector('.popup-img');
 export const editProfileButton = document.querySelector('.profile__edit-button');
 export const addPlaceButton = document.querySelector('.profile__add-button');
-export const editProfileCloseButton = editProfilePopup.querySelector('.popup__close-button');
+//export const editProfileCloseButton = editProfilePopup.querySelector('.popup__close-button');
 export const addPlaceCloseButton = addPlacePopup.querySelector('.popup__close-button');
 export const closePopupImg = document.querySelector('.popup-img__close-button');
 export const nameProfile = document.querySelector('.profile__name');
@@ -13,10 +25,6 @@ export const inputJob = document.querySelector('.popup__input_job');
 export const inputPlaceName = document.querySelector('.popup__input_place-name');
 export const inputPlaceImg = document.querySelector('.popup__input_place-img');
 export const cardsList = document.querySelector('.places');
-// Находим форму для Add Mesto в DOM
-export const addPlaceForm = addPlacePopup.querySelector('.popup__form');
-// Находим форму для Edit Profile в DOM
-export const editProfileForm = editProfilePopup.querySelector('.popup__form');
 export const startCards = [
     {
         name: 'Архыз',
@@ -43,11 +51,3 @@ export const startCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
-export const config = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__save-button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type-error',
-    errorClass: 'popup__error_visible',
-}
