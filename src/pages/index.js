@@ -23,8 +23,8 @@ const userProfilePopup = new PopupWithForm({
 const openEditPopup = () => {
     inputName.value = nameProfile.textContent;
     inputJob.value = jobProfile.textContent;
-    popupForm.resetInputError();
-    popupForm.disableButton();
+    popupEditForm.resetInputError();
+    popupEditForm.disableButton();
     userProfilePopup.open();
 }
 
@@ -35,6 +35,7 @@ const openEditPopup = () => {
 //     popupFormPlace.disableButton();
 //     openPopup(addPlacePopup);
 // }
+
 // // Обработчик «отправки» для формы добавления карточки места
 // function submitPlaceHandler(evt) {
 //     evt.preventDefault();
@@ -66,7 +67,7 @@ const openEditPopup = () => {
 editProfileButton.addEventListener('click', openEditPopup);
 userProfilePopup.setEventListeners();
 //валидация форм
-const popupForm = new FormValidator(formConfig, 'form_profile');
-popupForm.enableValidation();
+const popupEditForm = new FormValidator(formConfig, 'form_profile');
+popupEditForm.enableValidation();
 // const popupFormPlace = new FormValidator(config, addPlaceForm);
 //popupFormPlace.enableValidation();
