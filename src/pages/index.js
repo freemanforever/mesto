@@ -27,6 +27,7 @@ const openEditPopup = () => {
     popupForm.disableButton();
     userProfilePopup.open();
 }
+
 // //Функция открытия попапа добавления места
 // const openAddPopup = () => {
 //     addPlaceForm.reset();
@@ -51,7 +52,7 @@ const openEditPopup = () => {
 // editProfileForm.addEventListener('submit', editProfileSubmitHandler);
 // addPlaceForm.addEventListener('submit', submitPlaceHandler);
 // addPlaceButton.addEventListener('click', () => { openAddPopup() });
-// editProfileCloseButton.addEventListener('click', () => { closePopup(editProfilePopup) });
+
 // addPlaceCloseButton.addEventListener('click', () => { closePopup(addPlacePopup) });
 // closePopupImg.addEventListener('click', () => { closePopup(popupImg) });
 // // Выводим массив карточек на экран
@@ -63,6 +64,7 @@ const openEditPopup = () => {
 
 //listeners
 editProfileButton.addEventListener('click', openEditPopup);
+userProfilePopup.setEventListeners();
 //валидация форм
 const popupForm = new FormValidator(formConfig, 'form_profile');
 popupForm.enableValidation();
