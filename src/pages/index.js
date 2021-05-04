@@ -6,10 +6,10 @@ import {
     inputName, inputJob, inputPlaceName, inputPlaceImg, cardsList,
     startCards, formConfig, popupConfig
 } from '../utils/constants.js';
-// import Card from '../components/Card.js';
-// import Section from '../components/Section.js';
-// import PopupWithImage from '../components/PopupWithImage.js';
-// import UserInfo from '../components/UserInfo.js';
+import Card from '../components/Card.js';
+import Section from '../components/Section.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import UserInfo from '../components/UserInfo.js';
 const userProfilePopup = new PopupWithForm({
     popupSelector: popupConfig.editProfilePopup,
     handleFormSubmit: (evt) => {
