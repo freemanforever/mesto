@@ -6,7 +6,7 @@ export default class PopupWithImage extends Popup {
         this._headerImg = this._popupElement.querySelector('.popup-img__header');
     }
 
-    open({link, name}) {
+    open({ link, name }) {
         this._openedImg.setAttribute('src', link);
         this._openedImg.setAttribute('alt', name);
         this._headerImg.textContent = name;

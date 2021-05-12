@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/freemanforever/mesto/issues"
   },
-  "homepage": "https://github.com/freemanforever/mesto#readme"
+  "homepage": "https://github.com/freemanforever/mesto#readme",
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  }
 }

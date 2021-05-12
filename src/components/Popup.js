@@ -16,13 +16,17 @@ export default class Popup {
     setEventListeners() {
         this._popupElement.querySelector('.popup__close-button').addEventListener('click', this._close);
         document.addEventListener('keydown', this._handleEscClose);
-        this._popupElement.addEventListener('click', this._handleOverlayClick);
+        this._popupElement.addEventListener('mousedown', this._handleOverlayClick);
     }
     _handleOverlayClick = (event) => {
-        if (event.target !== event.currentTarget) { return };
+        if (event.target !== event.currentTarget) {
+            return
+        };
         this.close();
     }
     _handleEscClose = (event) => {
-        if (event.key === 'Escape') { this.close() };
+        if (event.key === 'Escape') {
+            this.close()
+        };
     }
 }

@@ -1,10 +1,20 @@
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import {
-    addPlacePopup, popupImg, editProfileButton, addPlaceButton,
-    closePopupImg, nameProfile, jobProfile,
-    inputName, inputJob, inputPlaceName, inputPlaceImg, cardsList,
-    startCards, formConfig, popupConfig
+    addPlacePopup,
+    popupImg,
+    editProfileButton,
+    addPlaceButton,
+    nameProfile,
+    jobProfile,
+    inputName,
+    inputJob,
+    inputPlaceName,
+    inputPlaceImg,
+    cardsList,
+    startCards,
+    formConfig,
+    popupConfig
 } from '../utils/constants.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';

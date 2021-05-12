@@ -1,10 +1,16 @@
-//import { openPopup } from '../pages/index.js';
-import { popupImg } from '../utils/constants.js';
+import {
+    popupImg
+} from '../utils/constants.js';
 export default class Card {
-    constructor({ name, link }, cardSelector) {
+    constructor({
+        name,
+        link,
+        handleCardClick
+    }, cardSelector) {
         this._name = name;
         this._link = link;
         this._cardSelector = cardSelector;
+        this._handleCardClick = handleCardClick;
     }
     _getTemplate() {
         const cardElement = document
