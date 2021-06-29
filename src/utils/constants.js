@@ -15,7 +15,6 @@ export const profileConfig = {
     profileName: 'profile__name',
     profileJob: 'profile__job'
 }
-export const addPlacePopup = document.querySelector('.popup-place-add');
 export const popupImg = document.querySelector('.popup-img');
 export const editProfileButton = document.querySelector('.profile__edit-button');
 export const addPlaceButton = document.querySelector('.profile__add-button');
@@ -24,6 +23,7 @@ export const inputJob = document.querySelector('.popup__input_job');
 export const inputPlaceName = document.querySelector('.popup__input_place-name');
 export const inputPlaceImg = document.querySelector('.popup__input_place-img');
 export const cardsList = document.querySelector('.places');
+
 export const startCards = [{
         name: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'

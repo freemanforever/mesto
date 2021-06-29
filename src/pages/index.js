@@ -7,7 +7,6 @@ import {
     inputName,
     inputJob,
     editProfileButton,
-    addPlacePopup,
     popupImg,
     addPlaceButton,
     inputPlaceName,
@@ -19,12 +18,10 @@ import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
-
 const userInfo = new UserInfo({
     userNameSelector: profileConfig.profileName,
     userJobSelector: profileConfig.profileJob
 });
-
 const userProfilePopup = new PopupWithForm({
     popupSelector: popupConfig.editProfilePopup,
     handleFormSubmit: () => {
@@ -37,9 +34,9 @@ const userProfilePopup = new PopupWithForm({
 })
 // // Функция открытия попапа редактирования профиля
 const openEditPopup = () => {
-    const currentProfileInfo = userInfo.getUserInfo();
-    inputName.value = currentProfileInfo.userName;
-    inputJob.value = currentProfileInfo.userJob;
+    const profileInfo = userInfo.getUserInfo();
+    inputName.value = profileInfo.userName;
+    inputJob.value = profileInfo.userJob;
     popupEditForm.resetInputError();
     popupEditForm.disableButton();
     userProfilePopup.open();
@@ -50,7 +47,7 @@ const openEditPopup = () => {
 //     addPlaceForm.reset();
 //     popupFormPlace.resetInputError();
 //     popupFormPlace.disableButton();
-//     openPopup(addPlacePopup);
+//     openPopup(addCardPopup);
 // }
 
 // // Обработчик «отправки» для формы добавления карточки места
@@ -63,16 +60,12 @@ const openEditPopup = () => {
 //     const card = new Card(addCardValues, '.place-card-template');
 //     const cardElement = card.getElement();
 //     cardsList.prepend(cardElement);
-//     closePopup(addPlacePopup);
+//     closePopup(addCardPopup);
 //     addPlaceForm.reset();
 // }
 
-// editProfileForm.addEventListener('submit', editProfileSubmitHandler);
-// addPlaceForm.addEventListener('submit', submitPlaceHandler);
-// addPlaceButton.addEventListener('click', () => { openAddPopup() });
-
-// addPlaceCloseButton.addEventListener('click', () => { closePopup(addPlacePopup) });
 // closePopupImg.addEventListener('click', () => { closePopup(popupImg) });
+
 // // Выводим массив карточек на экран
 // startCards.forEach(({ name, link }) => {
 //     const card = new Card({ name, link }, '.place-card-template');
@@ -83,6 +76,10 @@ const openEditPopup = () => {
 //listeners
 editProfileButton.addEventListener('click', openEditPopup);
 userProfilePopup.setEventListeners();
+
+// addPlaceForm.addEventListener('submit', submitPlaceHandler);
+// addPlaceButton.addEventListener('click', () => { openAddPopup() });
+
 //валидация форм
 const popupEditForm = new FormValidator(formConfig, 'form_profile');
 popupEditForm.enableValidation();
