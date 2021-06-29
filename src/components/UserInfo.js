@@ -20,3 +20,5 @@ export default class UserInfo {
         this._userJobElement.textContent = userJob;
     }
 }
+
+/*Содержит публичный метод setUserInfo, который принимает новые данные пользователя и добавляет их на страницу*/

@@ -1,38 +1,45 @@
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import {
-    addPlacePopup,
-    popupImg,
-    editProfileButton,
-    addPlaceButton,
-    nameProfile,
-    jobProfile,
+    formConfig,
+    popupConfig,
+    profileConfig,
     inputName,
     inputJob,
+    editProfileButton,
+    addPlacePopup,
+    popupImg,
+    addPlaceButton,
     inputPlaceName,
     inputPlaceImg,
     cardsList,
     startCards,
-    formConfig,
-    popupConfig
 } from '../utils/constants.js';
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
+
+const userInfo = new UserInfo({
+    userNameSelector: profileConfig.profileName,
+    userJobSelector: profileConfig.profileJob
+});
+
 const userProfilePopup = new PopupWithForm({
     popupSelector: popupConfig.editProfilePopup,
-    handleFormSubmit: (evt) => {
-        evt.preventDefault();
-        nameProfile.textContent = inputName.value;
-        jobProfile.textContent = inputJob.value;
+    handleFormSubmit: () => {
+        userInfo.setUserInfo({
+            userName: inputName.value,
+            userJob: inputJob.value
+        });
         userProfilePopup.close();
     }
 })
 // // Функция открытия попапа редактирования профиля
 const openEditPopup = () => {
-    inputName.value = nameProfile.textContent;
-    inputJob.value = jobProfile.textContent;
+    const currentProfileInfo = userInfo.getUserInfo();
+    inputName.value = currentProfileInfo.userName;
+    inputJob.value = currentProfileInfo.userJob;
     popupEditForm.resetInputError();
     popupEditForm.disableButton();
     userProfilePopup.open();
