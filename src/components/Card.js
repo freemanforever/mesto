@@ -6,15 +6,15 @@ export default class Card {
         name,
         link,
         handleCardClick
-    }, cardSelector) {
+    }, templateSelector) {
         this._name = name;
         this._link = link;
-        this._cardSelector = cardSelector;
+        this._templateSelector = templateSelector;
         this._handleCardClick = handleCardClick;
     }
     _getTemplate() {
         const cardElement = document
-            .querySelector(this._cardSelector)
+            .querySelector(this._templateSelector)
             .content
             .querySelector('.place-card')
             .cloneNode(true);
@@ -35,17 +35,16 @@ export default class Card {
     _delCard() {
         this._element.closest('.place-card').remove();
     }
-    _openImg() {
-        const openPopupHeader = document.querySelector('.popup-img__header');
-        const openPopupImg = document.querySelector('.popup-img__opened-image');
-        const img = this._element.querySelector('.place-card__image');
-        openPopupImg.src = img.src;
-        openPopupHeader.textContent = img.name;
-        openPopup(popupImg);
-    }
+    // _openImg() {
+    //     const openPopupHeader = document.querySelector('.popup-img__header');
+    //     const openPopupImg = document.querySelector('.popup-img__opened-image');
+    //     const img = this._element.querySelector('.place-card__image');
+    //     openPopupImg.src = img.src;
+    //     openPopupHeader.textContent = img.name;
+    //     openPopup(popupImg);
+    // }
     _setListeners() {
         this._element.querySelector('.place-card__like-button').addEventListener('click', () => this._likeCard());
         this._element.querySelector('.place-card__recycleButton').addEventListener('click', () => this._delCard());
-        this._element.querySelector('.place-card__image').addEventListener('click', () => this._openImg());
     }
 }
