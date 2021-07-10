@@ -7,7 +7,6 @@ import {
     inputName,
     inputJob,
     editProfileButton,
-    popupImg,
     addPlaceButton,
     inputPlaceName,
     inputPlaceImg,
@@ -66,7 +65,6 @@ const openEditPopup = () => {
 //     addPlaceForm.reset();
 // }
 
-// closePopupImg.addEventListener('click', () => { closePopup(popupImg) });
 
 // // Выводим массив карточек на экран
 const cardListInitiated = new Section({
@@ -80,17 +78,28 @@ function generateCard(item) {
     const card = new Card({
         name: item.name,
         link: item.link,
-
+        handleCardClick: openImg
     }, '.place-card-template');
     const cardElement = card.getElement();
     return cardElement;
 }
+
+const popupImage = new PopupWithImage(
+    popupConfig.imagePopup
+);
+
+function openImg(name, link) {
+    popupImage.open(name, link);
+};
+
 cardListInitiated.renderItems();
 //listeners
 editProfileButton.addEventListener('click', openEditPopup);
 userProfilePopup.setEventListeners();
+popupImage.setEventListeners();
 // addPlaceForm.addEventListener('submit', submitPlaceHandler);
 // addPlaceButton.addEventListener('click', () => { openAddPopup() });
+
 //валидация форм
 const popupEditForm = new FormValidator(formConfig, 'form_profile');
 popupEditForm.enableValidation();

@@ -8,14 +8,13 @@ export const formConfig = {
 }
 export const popupConfig = {
     editProfilePopup: '.popup-profile-edit',
-    addCardPopup: 'popup-place-add',
-    imagePopup: 'popup-img'
+    addCardPopup: '.popup-place-add',
+    imagePopup: '.popup-img'
 }
 export const profileConfig = {
     profileName: 'profile__name',
     profileJob: 'profile__job'
 }
-export const popupImg = document.querySelector('.popup-img');
 export const editProfileButton = document.querySelector('.profile__edit-button');
 export const addPlaceButton = document.querySelector('.profile__add-button');
 export const inputName = document.querySelector('.popup__input_name');

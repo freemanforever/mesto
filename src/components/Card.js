@@ -1,6 +1,3 @@
-import {
-    popupImg
-} from '../utils/constants.js';
 export default class Card {
     constructor({
         name,
@@ -35,16 +32,9 @@ export default class Card {
     _delCard() {
         this._element.closest('.place-card').remove();
     }
-    // _openImg() {
-    //     const openPopupHeader = document.querySelector('.popup-img__header');
-    //     const openPopupImg = document.querySelector('.popup-img__opened-image');
-    //     const img = this._element.querySelector('.place-card__image');
-    //     openPopupImg.src = img.src;
-    //     openPopupHeader.textContent = img.name;
-    //     openPopup(popupImg);
-    // }
     _setListeners() {
         this._element.querySelector('.place-card__like-button').addEventListener('click', () => this._likeCard());
         this._element.querySelector('.place-card__recycleButton').addEventListener('click', () => this._delCard());
+        this._element.querySelector('.place-card__image').addEventListener('click', () => this._handleCardClick(this._name, this._link));
     }
 }
