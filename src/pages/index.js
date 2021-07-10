@@ -41,19 +41,15 @@ const userProfilePopup = new PopupWithForm({
 const addCardPopup = new PopupWithForm({
     popupSelector: popupConfig.addCardPopup,
     handleFormSubmit: () => {
-        // // Обработчик «отправки» для формы добавления карточки места
-        // function submitPlaceHandler(evt) {
-        //     evt.preventDefault();
-        //     const addCardValues = {
-        //         name: inputPlaceName.value,
-        //         link: inputPlaceImg.value
-        //     }
-        //     const card = new Card(addCardValues, '.place-card-template');
-        //     const cardElement = card.getElement();
-        //     cardsList.prepend(cardElement);
-        //     closePopup(addCardPopup);
-        //     addPlaceForm.reset();
-        // }
+        const addCardValues = {
+            name: inputPlaceName.value,
+            link: inputPlaceImg.value
+        }
+        const card = new Card(addCardValues, '.place-card-template');
+        const cardElement = card.getElement();
+        cardsList.prepend(cardElement);
+        addCardPopup.close();
+        document.querySelector('.form_place').reset();
     }
 });
 // // Функция открытия попапа редактирования профиля
