@@ -9,7 +9,7 @@ export default class FormValidator {
         this._formElement = document.querySelector(`.${formElement}`);
         this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
         this._submitButton = this._formElement.querySelector(this._submitButtonSelector);
-    }
+    };
     //вывод сообщения об ошибке ввода 
     _showInputError(inputElement, errorMessage) {
         const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
@@ -31,20 +31,20 @@ export default class FormValidator {
         } else {
             this._hideInputError(inputElement);
         }
-    }
+    };
     //проверяем, есть ли из списка инпутов не валидные  
     _hasInvalidInput() {
         return this._inputList.some((inputElement) => {
             return !inputElement.validity.valid;
         });
-    }
+    };
     //сбрасываем ошибки с инпутов формы  
     resetInputError() {
         this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
         this._inputList.forEach((inputElement) => {
             this._hideInputError(inputElement);
         });
-    }
+    };
     //переключатель состояния кнопки отправки
     _toggleButtonState() {
         if (this._hasInvalidInput()) {
@@ -54,7 +54,7 @@ export default class FormValidator {
             this._submitButton.classList.remove(this._inactiveButtonClass);
             this._submitButton.disabled = false;
         };
-    }
+    };
     //навешиваем слушатели событий
     _setEventListeners() {
         this._toggleButtonState();
@@ -64,15 +64,15 @@ export default class FormValidator {
                 this._toggleButtonState();
             });
         });
-    }
+    };
     //disable button  
     disableButton() {
         const submitButton = this._formElement.querySelector(this._submitButtonSelector);
         submitButton.classList.add(this._inactiveButtonClass);
-    }
+    };
     //запуск валидации 
     enableValidation() {
         this._formElement.addEventListener('submit', (evt) => evt.preventDefault());
         this._setEventListeners();
     }
-}
+};

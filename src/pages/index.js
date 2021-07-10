@@ -17,12 +17,17 @@ import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
-
+// // Выводим массив карточек на экран
+const cardListInitiated = new Section({
+    items: startCards,
+    renderer: (data) => {
+        cardListInitiated.addItem(generateCard(data));
+    }
+}, cardsList);
 const userInfo = new UserInfo({
     userNameSelector: profileConfig.profileName,
     userJobSelector: profileConfig.profileJob
 });
-
 const userProfilePopup = new PopupWithForm({
     popupSelector: popupConfig.editProfilePopup,
     handleFormSubmit: () => {
@@ -32,7 +37,25 @@ const userProfilePopup = new PopupWithForm({
         });
         userProfilePopup.close();
     }
-})
+});
+const addCardPopup = new PopupWithForm({
+    popupSelector: popupConfig.addCardPopup,
+    handleFormSubmit: () => {
+        // // Обработчик «отправки» для формы добавления карточки места
+        // function submitPlaceHandler(evt) {
+        //     evt.preventDefault();
+        //     const addCardValues = {
+        //         name: inputPlaceName.value,
+        //         link: inputPlaceImg.value
+        //     }
+        //     const card = new Card(addCardValues, '.place-card-template');
+        //     const cardElement = card.getElement();
+        //     cardsList.prepend(cardElement);
+        //     closePopup(addCardPopup);
+        //     addPlaceForm.reset();
+        // }
+    }
+});
 // // Функция открытия попапа редактирования профиля
 const openEditPopup = () => {
     const profileInfo = userInfo.getUserInfo();
@@ -41,38 +64,17 @@ const openEditPopup = () => {
     popupEditForm.resetInputError();
     popupEditForm.disableButton();
     userProfilePopup.open();
-}
-
-// //Функция открытия попапа добавления места
-// const openAddPopup = () => {
-//     addPlaceForm.reset();
-//     popupFormPlace.resetInputError();
-//     popupFormPlace.disableButton();
-//     openPopup(addCardPopup);
-// }
-
-// // Обработчик «отправки» для формы добавления карточки места
-// function submitPlaceHandler(evt) {
-//     evt.preventDefault();
-//     const addCardValues = {
-//         name: inputPlaceName.value,
-//         link: inputPlaceImg.value
-//     }
-//     const card = new Card(addCardValues, '.place-card-template');
-//     const cardElement = card.getElement();
-//     cardsList.prepend(cardElement);
-//     closePopup(addCardPopup);
-//     addPlaceForm.reset();
-// }
-
-
-// // Выводим массив карточек на экран
-const cardListInitiated = new Section({
-    items: startCards,
-    renderer: (data) => {
-        cardListInitiated.addItem(generateCard(data));
-    }
-}, cardsList);
+};
+const popupImage = new PopupWithImage(
+    popupConfig.imagePopup
+);
+//Функция открытия попапа добавления места
+const openAddPopup = () => {
+    document.querySelector('.form_place').reset();
+    popupFormPlace.resetInputError();
+    popupFormPlace.disableButton();
+    addCardPopup.open();
+};
 
 function generateCard(item) {
     const card = new Card({
@@ -82,26 +84,19 @@ function generateCard(item) {
     }, '.place-card-template');
     const cardElement = card.getElement();
     return cardElement;
-}
-
-const popupImage = new PopupWithImage(
-    popupConfig.imagePopup
-);
+};
 
 function openImg(name, link) {
     popupImage.open(name, link);
 };
-
 cardListInitiated.renderItems();
 //listeners
 editProfileButton.addEventListener('click', openEditPopup);
+addPlaceButton.addEventListener('click', openAddPopup);
 userProfilePopup.setEventListeners();
 popupImage.setEventListeners();
-// addPlaceForm.addEventListener('submit', submitPlaceHandler);
-// addPlaceButton.addEventListener('click', () => { openAddPopup() });
-
 //валидация форм
 const popupEditForm = new FormValidator(formConfig, 'form_profile');
 popupEditForm.enableValidation();
-// const popupFormPlace = new FormValidator(config, addPlaceForm);
-//popupFormPlace.enableValidation();
+const popupFormPlace = new FormValidator(formConfig, 'form_place');
+popupFormPlace.enableValidation();
