@@ -17,7 +17,6 @@ import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
-// // Выводим массив карточек на экран
 const cardListInitiated = new Section({
     items: startCards,
     renderer: (data) => {
@@ -43,7 +42,8 @@ const addCardPopup = new PopupWithForm({
     handleFormSubmit: () => {
         const addCardValues = {
             name: inputPlaceName.value,
-            link: inputPlaceImg.value
+            link: inputPlaceImg.value,
+            handleCardClick: openImg
         }
         const card = new Card(addCardValues, '.place-card-template');
         const cardElement = card.getElement();
@@ -52,7 +52,6 @@ const addCardPopup = new PopupWithForm({
         document.querySelector('.form_place').reset();
     }
 });
-// // Функция открытия попапа редактирования профиля
 const openEditPopup = () => {
     const profileInfo = userInfo.getUserInfo();
     inputName.value = profileInfo.userName;
@@ -64,7 +63,6 @@ const openEditPopup = () => {
 const popupImage = new PopupWithImage(
     popupConfig.imagePopup
 );
-//Функция открытия попапа добавления места
 const openAddPopup = () => {
     document.querySelector('.form_place').reset();
     popupFormPlace.resetInputError();
@@ -91,7 +89,8 @@ editProfileButton.addEventListener('click', openEditPopup);
 addPlaceButton.addEventListener('click', openAddPopup);
 userProfilePopup.setEventListeners();
 popupImage.setEventListeners();
-//валидация форм
+addCardPopup.setEventListeners();
+//validation
 const popupEditForm = new FormValidator(formConfig, 'form_profile');
 popupEditForm.enableValidation();
 const popupFormPlace = new FormValidator(formConfig, 'form_place');
