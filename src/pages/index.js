@@ -17,16 +17,14 @@ import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
-const cardListInitiated = new Section({
-    items: startCards,
-    renderer: (data) => {
-        cardListInitiated.addItem(generateCard(data));
-    }
-}, cardsList);
+
 const userInfo = new UserInfo({
     userNameSelector: profileConfig.profileName,
     userJobSelector: profileConfig.profileJob
 });
+const popupImage = new PopupWithImage(
+    popupConfig.imagePopup
+);
 const userProfilePopup = new PopupWithForm({
     popupSelector: popupConfig.editProfilePopup,
     handleFormSubmit: () => {
@@ -40,14 +38,11 @@ const userProfilePopup = new PopupWithForm({
 const addCardPopup = new PopupWithForm({
     popupSelector: popupConfig.addCardPopup,
     handleFormSubmit: () => {
-        const addCardValues = {
+        cardsList.prepend(generateCard({
             name: inputPlaceName.value,
             link: inputPlaceImg.value,
             handleCardClick: openImg
-        }
-        const card = new Card(addCardValues, '.place-card-template');
-        const cardElement = card.getElement();
-        cardsList.prepend(cardElement);
+        }));
         addCardPopup.close();
         document.querySelector('.form_place').reset();
     }
@@ -60,9 +55,6 @@ const openEditPopup = () => {
     popupEditForm.disableButton();
     userProfilePopup.open();
 };
-const popupImage = new PopupWithImage(
-    popupConfig.imagePopup
-);
 const openAddPopup = () => {
     document.querySelector('.form_place').reset();
     popupFormPlace.resetInputError();
@@ -83,7 +75,6 @@ function generateCard(item) {
 function openImg(name, link) {
     popupImage.open(name, link);
 };
-cardListInitiated.renderItems();
 //listeners
 editProfileButton.addEventListener('click', openEditPopup);
 addPlaceButton.addEventListener('click', openAddPopup);
@@ -95,3 +86,11 @@ const popupEditForm = new FormValidator(formConfig, 'form_profile');
 popupEditForm.enableValidation();
 const popupFormPlace = new FormValidator(formConfig, 'form_place');
 popupFormPlace.enableValidation();
+//rendering
+const cardListInitiated = new Section({
+    items: startCards,
+    renderer: (data) => {
+        cardListInitiated.addItem(generateCard(data));
+    }
+}, cardsList);
+cardListInitiated.renderItems();
