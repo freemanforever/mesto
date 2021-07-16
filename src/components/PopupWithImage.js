@@ -11,7 +11,4 @@ export default class PopupWithImage extends Popup {
         this._openedImgName.textContent = name;
         super.open();
     }
-    setEventListeners() {
-        this._popupElement.querySelector('.popup-img__close-button').addEventListener('click', this._close);
-    }
 }
