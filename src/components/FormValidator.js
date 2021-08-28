@@ -1,6 +1,5 @@
 export default class FormValidator {
     constructor(formConfig, formElement) {
-        this._formSelector = formConfig.formSelector;
         this._inputSelector = formConfig.inputSelector;
         this._submitButtonSelector = formConfig.submitButtonSelector;
         this._inactiveButtonClass = formConfig.inactiveButtonClass;
@@ -53,7 +52,7 @@ export default class FormValidator {
         } else {
             this._submitButton.classList.remove(this._inactiveButtonClass);
             this._submitButton.disabled = false;
-        };
+        }
     };
     //навешиваем слушатели событий
     _setEventListeners() {

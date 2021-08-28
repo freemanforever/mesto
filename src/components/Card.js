@@ -10,12 +10,11 @@ export default class Card {
         this._handleCardClick = handleCardClick;
     }
     _getTemplate() {
-        const cardElement = document
+        return document
             .querySelector(this._templateSelector)
             .content
             .querySelector('.place-card')
             .cloneNode(true);
-        return cardElement;
     }
     getElement() {
         this._element = this._getTemplate();

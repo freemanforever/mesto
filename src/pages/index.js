@@ -71,11 +71,11 @@ function generateCard(item) {
     }, '.place-card-template');
     const cardElement = card.getElement();
     return cardElement;
-};
+}
 
 function openImg(name, link) {
     popupImage.open(name, link);
-};
+}
 //listeners
 editProfileButton.addEventListener('click', openEditPopup);
 addPlaceButton.addEventListener('click', openAddPopup);
