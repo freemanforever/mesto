@@ -7,6 +7,7 @@
 @import url(../blocks/typo/_size_xl/typo_size_xl.css);
 @import url(../blocks/typo/_size_l/typo_size_l.css);
 @import url(../blocks/typo/_size_s/typo_size_s.css);
+@import url(../blocks/typo/_size_xs/typo_size_xs.css);
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/profile/profile.css);
@@ -24,6 +25,7 @@
 @import url(../blocks/place-card/__liked/place-card__liked.css);
 @import url(../blocks/place-card/__recycleButton/place-card__recycleButton.css);
 @import url(../blocks/place-card/__like-button/place-card__like-button.css);
+@import url(../blocks/place-card/__like-count/place-card__like-count.css);
 @import url(../blocks/place-card/__like-img/place-card__like-img.css);
 @import url(../blocks/place-card/__label/place-card__label.css);
 @import url(../blocks/footer/footer.css);
@@ -49,4 +51,9 @@
 @import url(../blocks/popup-del-confirm/__button/popup-del-confirm__button.css);
 @import url(../blocks/popup-del-confirm/__close-button/popup-del-confirm__close-button.css);
 @import url(../blocks/popup-del-confirm/__caption/popup-del-confirm__caption.css);
+@import url(../blocks/popup-avatar-edit/__caption/popup-avatar-edit__caption.css);
+@import url(../blocks/popup-avatar-edit/__input/popup-avatar-edit__input.css);
+@import url(../blocks/profile/__avatar-edit-button/profile__avatar-edit-button.css);
+@import url(../blocks/popup/__avatar-edit-container/popup__avatar-edit-container.css);
+
 * {outline: 2px solid dodgerblue}

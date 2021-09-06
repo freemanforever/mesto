@@ -16,13 +16,17 @@
     </header>
     <main class="content">
         <section class="profile section-pos">
-            <img src="<%=require('./images/avatar.svg')%>" alt="Аватар пользователя" class="profile__avatar">
+            <div class="popup__avatar-edit-container">
+                <img src="<%=require('./images/avatar.svg')%>" alt="Аватар пользователя" class="profile__avatar">
+                <button type="button" class="profile__avatar-edit-button"></button>
+            </div>
             <div class="profile__info">
                 <div class="profile__card">
                     <h1 class="profile__name typo typo_size_xl hide-text-overflow">Жак-Ив Кусто</h1>
                     <button type="button" class="profile__edit-button">
                         <img class="profile__edit-button-img" src="<%=require('./images/editButton.svg')%>"
-                             alt="кнопка редактирования профиля"></button>
+                             alt="кнопка редактирования профиля">
+                    </button>
                 </div>
                 <h2 class="profile__job typo typo_size_l hide-text-overflow">Исследователь океана</h2>
             </div>
@@ -62,7 +66,7 @@
                            placeholder="Название" autocomplete="off" required minlength="2" maxlength="30"
                            id="place-name">
                     <span class="popup__input-error" id="place-name-error"></span>
-                    <input class="popup__input popup__input_place-img typo typo_size_s" name="PlaceImage" value=""
+                    <input class="popup__input typo typo_size_s" name="PlaceImage" value=""
                            placeholder="Ссылка на картинку" autocomplete="off" required id="place-link" type="url">
                     <span class="popup__input-error" id="place-link-error"></span>
                     <button class="popup__save-button" type="submit">Создать</button>
@@ -72,16 +76,17 @@
 
         <section class="popup popup-img">
             <div class="popup-img__container">
-                <button type="button" class="popup-img__close-button popup__close-button"><img
-                        class="popup__close-button-img"
-                        src="<%=require('./images/closeButton.svg')%>" alt="кнопка закрытия формы"></button>
+                <button type="button" class="popup-img__close-button popup__close-button">
+                    <img class="popup__close-button-img" src="<%=require('./images/closeButton.svg')%>"
+                         alt="кнопка закрытия формы">
+                </button>
                 <img src="" alt="" class="popup-img__opened-image">
                 <p class="popup-img__header"></p>
             </div>
         </section>
         <!--popup подтверждения удаления карточки-->
         <section class="popup popup-del-confirm">
-            <button type="button" class="popup__close-button popup-del-confirm__close-button">
+            <button type="button" class="popup__close-button popup__close-button-form">
                 <img class="popup__close-button-img"
                      src="<%=require('./images/closeButton.svg')%>" alt="кнопка закрытия формы"></button>
             <div class="popup__container">
@@ -90,13 +95,19 @@
             </div>
         </section>
         <!--        popup редактирования аватара-->
-        <section class=" popup-avatar-edit">
-            <button type="button" class="popup__close-button popup__close-button-avatar-edit">
+        <section class="popup popup-avatar-edit">
+            <button type="button" class="popup__close-button popup__close-button-form">
                 <img class="popup__close-button-img"
                      src="<%=require('./images/closeButton.svg')%>" alt="кнопка закрытия формы"></button>
             <div class="popup__container">
-                <h3 class="popup__caption typo typo_size_xxl">Обновить аватар</h3>
-                <button class="popup__confirm-button" type="submit">Сохранить</button>
+                <form name="popupFormAvatarEdit" class="popup__form popup-avatar-edit__form" novalidate>
+                    <h3 class="popup-avatar-edit__caption typo typo_size_xxl">Обновить аватар</h3>
+                    <input class="popup-avatar-edit__input popup__input  typo typo_size_s" name="AvatarImage" value=""
+                           placeholder="Обновить аватар(введите ссылку на картинку)" autocomplete="off" required
+                           id="avatar-link" type="url">
+                    <span class="popup__input-error" id="avatar-link-error"></span>
+                    <button class="popup-avatar-edit__button popup__save-button" type="submit">Сохранить</button>
+                </form>
             </div>
         </section>
 
@@ -118,6 +129,7 @@
             <button type="button" class="place-card__like-button">
                 <img class="place-card__like-img" src="<%=require('./images/likeButton.svg')%>"
                      alt="кнопка 'Мне нравится!'">
+                <p class="place-card__like-count typo_size_xs">n</p>
             </button>
         </div>
     </div>
