@@ -12,6 +12,7 @@ import {
     cardsList,
     startCards
 } from "../utils/constants.js";
+import Api from "../components/Api.js";
 import Section from "../components/Section.js";
 import Card from "../components/Card.js";
 import UserInfo from "../components/UserInfo.js";
@@ -19,7 +20,13 @@ import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 //import PopupWithConfirmation from "../components/PopupWithConfirmation";
-
+const api = new Api({
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-27',
+    headers: {
+        authorization: '32e537f0-5d42-44fe-b91c-e46296511fbf',
+        'Content-Type': 'application/json'
+    }
+});
 
 const userInfo = new UserInfo({
     userNameSelector: profileConfig.profileName,
@@ -89,6 +96,7 @@ const popupEditForm = new FormValidator(formConfig, "form_profile");
 popupEditForm.enableValidation();
 const popupFormPlace = new FormValidator(formConfig, "form_place");
 popupFormPlace.enableValidation();
+
 //rendering
 const cardListInitiated = new Section({
     items: startCards,

@@ -49,7 +49,6 @@
 @import url(../blocks/popup/__error/_visible/popup__error_visible.css);
 @import url(../blocks/popup/__input/_type-error/popup__input_type-error.css);
 @import url(../blocks/popup-del-confirm/__button/popup-del-confirm__button.css);
-@import url(../blocks/popup-del-confirm/__close-button/popup-del-confirm__close-button.css);
 @import url(../blocks/popup-del-confirm/__caption/popup-del-confirm__caption.css);
 @import url(../blocks/popup-avatar-edit/__caption/popup-avatar-edit__caption.css);
 @import url(../blocks/popup-avatar-edit/__input/popup-avatar-edit__input.css);
