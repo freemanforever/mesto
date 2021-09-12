@@ -10,13 +10,13 @@ export const popupConfig = {
     editProfilePopup: '.popup-profile-edit',
     addCardPopup: '.popup-place-add',
     imagePopup: '.popup-img',
-    editAvatarPopup: '.profile__avatar-container-edit',
+    editAvatarPopup: '.popup-avatar-edit',
     delConfirmPopup: '.popup-del-confirm'
 }
 export const profileConfig = {
     profileName: 'profile__name',
     profileJob: 'profile__job',
-    profileAvatar: 'profile__avatar'
+    profileAvatar: 'profile__avatar-image'
 }
 export const apiConfig = {
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-27',

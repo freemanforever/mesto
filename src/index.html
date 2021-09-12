@@ -36,12 +36,13 @@
 
         <section class="places section-pos"></section>
 
+
         <section class="popup popup-profile-edit">
             <button type="button" class="popup__close-button popup__close-button-form"><img
                     class="popup__close-button-img"
                     src="<%=require('./images/closeButton.svg')%>" alt="кнопка закрытия формы"></button>
             <div class="popup__container">
-                <form name="popupForm" class="popup__form form-profile" novalidate>
+                <form name="popupEditForm" class="popup__form form-profile" novalidate>
                     <h3 class="popup__caption typo typo_size_xxl">Редактировать профиль</h3>
                     <input class="popup__input popup__input_name typo typo_size_s" name="Name" value=""
                            autocomplete="off"
@@ -54,6 +55,7 @@
                 </form>
             </div>
         </section>
+
 
         <section class="popup popup-place-add">
             <button type="button" class="popup__close-button popup__close-button-form"><img
