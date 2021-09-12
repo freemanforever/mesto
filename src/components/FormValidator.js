@@ -44,7 +44,6 @@ export default class FormValidator {
 
     //сбрасываем ошибки с инпутов формы
     resetInputError() {
-        this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
         this._inputList.forEach((inputElement) => {
             this._hideInputError(inputElement);
         });
@@ -53,8 +52,7 @@ export default class FormValidator {
     //переключатель состояния кнопки отправки
     _toggleButtonState() {
         if (this._hasInvalidInput()) {
-            this._submitButton.classList.add(this._inactiveButtonClass);
-            this._submitButton.disabled = true;
+            this.disableButton();
         } else {
             this._submitButton.classList.remove(this._inactiveButtonClass);
             this._submitButton.disabled = false;
@@ -74,8 +72,8 @@ export default class FormValidator {
 
     //disable button
     disableButton() {
-        const submitButton = this._formElement.querySelector(this._submitButtonSelector);
-        submitButton.classList.add(this._inactiveButtonClass);
+        this._submitButton.classList.add(this._inactiveButtonClass);
+        this._submitButton.disabled = true;
     };
 
     //запуск валидации

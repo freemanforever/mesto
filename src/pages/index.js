@@ -28,7 +28,7 @@ const userInfo = new UserInfo({
     userJobSelector: profileConfig.profileJob,
     userAvatarSelector: profileConfig.profileAvatar
 });
-let cardsList = new Section({
+const cardsList = new Section({
     renderer: (item) => {
         cardsList.appendItem(createCard(item, cardTemplateSelector))
     }
@@ -99,7 +99,6 @@ const openEditPopup = () => {
     userProfilePopup.open();
 };
 const openAddPopup = () => {
-    document.querySelector(".form-place").reset();
     popupFormPlace.resetInputError();
     popupFormPlace.disableButton();
     addCardPopup.open();
@@ -132,7 +131,7 @@ function createCard(data, templateSelector) {
             handleAddLike: () => {
                 api.addLike(data._id)
                     .then(data => {
-                        card._isLiked = true;
+                        card.isLiked = true;
                         card._likeCounter.textContent = data.likes.length;
                         card._likeButton.classList.toggle('place-card__liked')
                     })
@@ -141,7 +140,7 @@ function createCard(data, templateSelector) {
             handleDelLike: () => {
                 api.delLike(data._id)
                     .then(data => {
-                        card._isLiked = false;
+                        card.isLiked = false;
                         card._likeCounter.textContent = data.likes.length;
                         card._likeButton.classList.toggle('place-card__liked')
                     })

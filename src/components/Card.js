@@ -6,7 +6,7 @@ export default class Card {
         this._link = data.link;
         this._templateSelector = templateSelector;
         this._handleCardClick = handleCardClick;
-        this._isLiked = false;
+        this.isLiked = false;
         this._handleCardDelSubmit = handleCardDelSubmit;
         this._handleAddLike = handleAddLike;
         this._handleDelLike = handleDelLike;
@@ -39,7 +39,7 @@ export default class Card {
         this._likes.forEach(element => {
             if (element._id === this._currentUserId) {
                 this._likeButton.classList.add('place-card__liked');
-                this._isLiked = true
+                this.isLiked = true
             }
         });
         this._setListeners();
@@ -63,7 +63,7 @@ export default class Card {
             this._handleCardClick(this._name, this._link)
         });
         this._likeButton.addEventListener('click', () => {
-            if (this._isLiked) {
+            if (this.isLiked) {
                 this._handleDelLike(this._cardId)
             } else {
                 this._handleAddLike(this._cardId)
