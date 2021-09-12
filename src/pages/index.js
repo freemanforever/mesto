@@ -19,7 +19,7 @@ import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
-import PopupWithConfirm from "../components/PopupWithConfirm.js";
+import PopupWithConfirm from "../components/PopupWithConfirmation.js";
 
 let userId;
 const api = new Api(apiConfig);
