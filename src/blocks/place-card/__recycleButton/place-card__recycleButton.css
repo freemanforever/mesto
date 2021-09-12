@@ -4,10 +4,11 @@
     left: 249px;
     border: none;
     background: none;
-    display: flex;  
+    display: flex;
     max-width: 18px;
-    padding: 0;      
+    padding: 0;
 }
+
 .place-card__recycleButton:hover {
     opacity: 0.6;
     cursor: pointer;

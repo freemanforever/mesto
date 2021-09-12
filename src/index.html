@@ -79,7 +79,8 @@
                     <img class="popup__close-button-img" src="<%=require('./images/closeButton.svg')%>"
                          alt="кнопка закрытия формы">
                 </button>
-                <img src="" alt="" class="popup-img__opened-image">
+                <img class="popup-img__opened-image" alt="Оригинал изображения"
+                     src="<%=require('./images/closeButton.svg')%>">
                 <p class="popup-img__header"></p>
             </div>
         </section>
@@ -119,7 +120,7 @@
 
 <template class="place-card-template">
     <div class="place-card">
-        <img src="" alt="Пейзаж места" class="place-card__image" type="button">
+        <img alt="Пейзаж места" class="place-card__image" type="button" src="<%=require('./images/closeButton.svg')%>">
         <button type="button" class="place-card__recycleButton">
             <img src="<%=require('./images/recycleButton.svg')%>" alt="Корзина" class="place-card__recycle-img">
         </button>
@@ -130,7 +131,6 @@
                      alt="кнопка 'Мне нравится!'">
                 <p class="place-card__like-count typo_size_xs"></p>
             </button>
-
         </div>
     </div>
 </template>
