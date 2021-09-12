@@ -73,7 +73,6 @@
                 </form>
             </div>
         </section>
-
         <section class="popup popup-img">
             <div class="popup-img__container">
                 <button type="button" class="popup-img__close-button popup__close-button">
@@ -89,8 +88,10 @@
                 <img class="popup__close-button-img"
                      src="<%=require('./images/closeButton.svg')%>" alt="кнопка закрытия формы"></button>
             <div class="popup__container">
-                <h3 class="popup-del-confirm__caption typo typo_size_xxl">Вы уверены?</h3>
-                <button class="popup__save-button popup-del-confirm__button" type="submit">Да</button>
+                <form class="popup__form" name="popupDelConfirm" novalidate>
+                    <h3 class="popup-del-confirm__caption typo typo_size_xxl">Вы уверены?</h3>
+                    <button class="popup__save-button popup-del-confirm__button" type="submit">Да</button>
+                </form>
             </div>
         </section>
         <section class="popup popup-avatar-edit">
@@ -98,7 +99,7 @@
                 <img class="popup__close-button-img"
                      src="<%=require('./images/closeButton.svg')%>" alt="кнопка закрытия формы"></button>
             <div class="popup__container">
-                <form name="popupFormAvatarEdit" class="popup__form popup-avatar-edit__form" novalidate>
+                <form name="popupFormAvatarEdit" class="popup__form form_avatar" novalidate>
                     <h3 class="popup-avatar-edit__caption typo typo_size_xxl">Обновить аватар</h3>
                     <input class="popup-avatar-edit__input popup__input  typo typo_size_s" name="AvatarImage" value=""
                            placeholder="Обновить аватар(введите ссылку на картинку)" autocomplete="off" required
@@ -127,8 +128,9 @@
             <button type="button" class="place-card__like-button">
                 <img class="place-card__like-img" src="<%=require('./images/likeButton.svg')%>"
                      alt="кнопка 'Мне нравится!'">
-                <p class="place-card__like-count typo_size_xs">n</p>
+                <p class="place-card__like-count typo_size_xs"></p>
             </button>
+
         </div>
     </div>
 </template>

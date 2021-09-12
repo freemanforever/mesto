@@ -1,22 +1,99 @@
 export default class Api {
     constructor(options) {
-        // тело конструктора
+        this._baseUrl = options.baseUrl;
+        this._headers = options.headers;
     }
+
+    returnResultStatus(res) {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Что-то пошло не так: ${res.status} : ${res.statusText}`);
+    }
+
+    getUserInfo() {
+        return fetch(this._baseUrl + '/users/me', {headers: this._headers})
+            .then(this.returnResultStatus)
+    }
+
     getInitialCards() {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-42/cards', {
-            headers: {
-                authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6'
-            }
-        })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-
-                // если ошибка, отклоняем промис
-                return Promise.reject(`Ошибка: ${res.status}`);
-            });
+        return fetch(this._baseUrl + '/cards', {headers: this._headers})
+            .then(this.returnResultStatus)
     }
 
-    // другие методы работы с API
+    sendProfileInfo({name, about}) {
+        return fetch(
+            this._baseUrl + '/users/me',
+            {
+                method: 'PATCH',
+                headers: this._headers,
+                body: JSON.stringify({
+                    name: name,
+                    about: about
+                })
+            }
+        )
+            .then(this.returnResultStatus)
+    }
+
+    addCard({name, link}) {
+        return fetch(
+            this._baseUrl + '/cards',
+            {
+                method: 'POST',
+                headers: this._headers,
+                body: JSON.stringify({
+                    name,
+                    link
+                })
+            }
+        )
+            .then(this.returnResultStatus)
+    }
+
+    delCard(cardId) {
+        return fetch(
+            this._baseUrl + `/cards/${cardId}`,
+            {
+                method: 'DELETE',
+                headers: this._headers
+            })
+            .then(this.returnResultStatus)
+    }
+
+    addLike(cardId) {
+        return fetch(
+            this._baseUrl + `/cards/likes/${cardId}`,
+            {
+                method: 'PUT',
+                headers: this._headers
+            }
+        )
+            .then(this.returnResultStatus)
+    }
+
+    delLike(cardId) {
+        return fetch(
+            this._baseUrl + `/cards/likes/${cardId}`,
+            {
+                method: 'DELETE',
+                headers: this._headers
+            }
+        )
+            .then(this.returnResultStatus);
+    }
+
+    setAvatar({avatar}) {
+        return fetch(
+            this._baseUrl + '/users/me/avatar',
+            {
+                method: 'PATCH',
+                headers: this._headers,
+                body: JSON.stringify({
+                    avatar: avatar,
+                })
+            }
+        )
+            .then(this.returnResultStatus)
+    }
 }

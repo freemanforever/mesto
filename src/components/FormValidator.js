@@ -9,20 +9,23 @@ export default class FormValidator {
         this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
         this._submitButton = this._formElement.querySelector(this._submitButtonSelector);
     };
-    //вывод сообщения об ошибке ввода 
+
+    //вывод сообщения об ошибке ввода
     _showInputError(inputElement, errorMessage) {
         const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
         inputElement.classList.add(this._inputErrorClass);
         errorElement.textContent = errorMessage;
         errorElement.classList.add(this._errorClass);
     };
-    //скрытие сообщения об ошибке ввода  
+
+    //скрытие сообщения об ошибке ввода
     _hideInputError(inputElement) {
         const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
         inputElement.classList.remove(this._inputErrorClass);
         errorElement.classList.remove(this._errorClass);
         errorElement.textContent = '';
     };
+
     //проверка валидности введенного в input, для вывода(скрытия) ошибки
     _checkInputValidity(inputElement) {
         if (!inputElement.validity.valid) {
@@ -31,19 +34,22 @@ export default class FormValidator {
             this._hideInputError(inputElement);
         }
     };
-    //проверяем, есть ли из списка инпутов не валидные  
+
+    //проверяем, есть ли из списка инпутов не валидные
     _hasInvalidInput() {
         return this._inputList.some((inputElement) => {
             return !inputElement.validity.valid;
         });
     };
-    //сбрасываем ошибки с инпутов формы  
+
+    //сбрасываем ошибки с инпутов формы
     resetInputError() {
         this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
         this._inputList.forEach((inputElement) => {
             this._hideInputError(inputElement);
         });
     };
+
     //переключатель состояния кнопки отправки
     _toggleButtonState() {
         if (this._hasInvalidInput()) {
@@ -54,6 +60,7 @@ export default class FormValidator {
             this._submitButton.disabled = false;
         }
     };
+
     //навешиваем слушатели событий
     _setEventListeners() {
         this._toggleButtonState();
@@ -64,12 +71,14 @@ export default class FormValidator {
             });
         });
     };
-    //disable button  
+
+    //disable button
     disableButton() {
         const submitButton = this._formElement.querySelector(this._submitButtonSelector);
         submitButton.classList.add(this._inactiveButtonClass);
     };
-    //запуск валидации 
+
+    //запуск валидации
     enableValidation() {
         this._formElement.addEventListener('submit', (evt) => evt.preventDefault());
         this._setEventListeners();
