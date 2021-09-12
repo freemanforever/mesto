@@ -99,7 +99,7 @@ const openEditPopup = () => {
     userProfilePopup.open();
 };
 const openAddPopup = () => {
-    document.querySelector(".form_place").reset();
+    document.querySelector(".form__place").reset();
     popupFormPlace.resetInputError();
     popupFormPlace.disableButton();
     addCardPopup.open();
