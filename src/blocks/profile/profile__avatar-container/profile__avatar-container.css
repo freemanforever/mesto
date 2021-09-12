@@ -1,4 +1,4 @@
-.popup-avatar {
+.profile__avatar-container {
     height: 120px;
     width: 120px;
     border-radius: 50%;
@@ -6,11 +6,11 @@
     align-items: center;
 }
 
-.popup-avatar:hover {
+.profile__avatar-container:hover {
     opacity: 0.5;
 }
 @media screen and (min-width: 320px) and (max-width: 1023px) {
-    .popup-avatar {
+    .profile__avatar-container {
         margin: 0 auto;
     }
 }

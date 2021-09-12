@@ -10,7 +10,7 @@ export const popupConfig = {
     editProfilePopup: '.popup-profile-edit',
     addCardPopup: '.popup-place-add',
     imagePopup: '.popup-img',
-    editAvatarPopup: '.popup-avatar-edit',
+    editAvatarPopup: '.profile__avatar-container-edit',
     delConfirmPopup: '.popup-del-confirm'
 }
 export const profileConfig = {
