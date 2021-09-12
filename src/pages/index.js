@@ -99,7 +99,7 @@ const openEditPopup = () => {
     userProfilePopup.open();
 };
 const openAddPopup = () => {
-    document.querySelector(".form__place").reset();
+    document.querySelector(".form-place").reset();
     popupFormPlace.resetInputError();
     popupFormPlace.disableButton();
     addCardPopup.open();
@@ -174,9 +174,9 @@ popupEditAvatar.setEventListeners();
 popupImage.setEventListeners();
 addCardPopup.setEventListeners();
 delConfirmPopup.setEventListeners();
-const popupEditForm = new FormValidator(formConfig, "form__profile");
+const popupEditForm = new FormValidator(formConfig, "form-profile");
 popupEditForm.enableValidation();
-const popupFormPlace = new FormValidator(formConfig, "form__place");
+const popupFormPlace = new FormValidator(formConfig, "form-place");
 popupFormPlace.enableValidation();
-const popupEditAvatarForm = new FormValidator(formConfig, "form__avatar");
+const popupEditAvatarForm = new FormValidator(formConfig, "form-avatar");
 popupEditAvatarForm.enableValidation();
