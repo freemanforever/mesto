@@ -132,8 +132,8 @@ function createCard(data, templateSelector) {
                 api.addLike(data._id)
                     .then(data => {
                         card.isLiked = true;
-                        card._likeCounter.textContent = data.likes.length;
-                        card._likeButton.classList.toggle('place-card__liked')
+                        card.likeCounter.textContent = data.likes.length;
+                        card.likeButton.classList.toggle('place-card__liked')
                     })
                     .catch((err) => console.log(`Error with createCards handleAddLike` + err))
             },
@@ -141,8 +141,8 @@ function createCard(data, templateSelector) {
                 api.delLike(data._id)
                     .then(data => {
                         card.isLiked = false;
-                        card._likeCounter.textContent = data.likes.length;
-                        card._likeButton.classList.toggle('place-card__liked')
+                        card.likeCounter.textContent = data.likes.length;
+                        card.likeButton.classList.toggle('place-card__liked')
                     })
                     .catch((err) => console.log(`Error with handleDelLike` + err))
             },

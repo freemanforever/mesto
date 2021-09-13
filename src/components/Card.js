@@ -30,15 +30,15 @@ export default class Card {
         this._titleElement = this._element.querySelector('.place-card__header');
         this._titleElement.textContent = this._name;
         this._imageElement = this._element.querySelector('.place-card__image');
-        this._likeButton = this._element.querySelector('.place-card__like-button');
-        this._likeCounter = this._element.querySelector('.place-card__like-count')
-        this._likeCounter.textContent = this._likes.length;
+        this.likeButton = this._element.querySelector('.place-card__like-button');
+        this.likeCounter = this._element.querySelector('.place-card__like-count')
+        this.likeCounter.textContent = this._likes.length;
         const placeCardImage = this._imageElement;
         placeCardImage.src = this._link;
         placeCardImage.alt = this._name;
         this._likes.forEach(element => {
             if (element._id === this._currentUserId) {
-                this._likeButton.classList.add('place-card__liked');
+                this.likeButton.classList.add('place-card__liked');
                 this.isLiked = true
             }
         });
@@ -62,7 +62,7 @@ export default class Card {
         this._imageElement.addEventListener('click', () => {
             this._handleCardClick(this._name, this._link)
         });
-        this._likeButton.addEventListener('click', () => {
+        this.likeButton.addEventListener('click', () => {
             if (this.isLiked) {
                 this._handleDelLike(this._cardId)
             } else {
