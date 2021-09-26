@@ -164,7 +164,9 @@ Promise.all([cardsData, getUserData])
         cardsList.renderItems(data);
     })
     .catch((err) => console.log(`Error with promises...` + err));
-
+const popupEditForm = new FormValidator(formConfig, "form-profile");
+const popupFormPlace = new FormValidator(formConfig, "form-place");
+const popupEditAvatarForm = new FormValidator(formConfig, "form-avatar");
 editProfileButton.addEventListener("click", openEditPopup);
 addPlaceButton.addEventListener("click", openAddPopup);
 editAvatarButton.addEventListener("click", openAvatarPopup);
@@ -173,9 +175,6 @@ popupEditAvatar.setEventListeners();
 popupImage.setEventListeners();
 addCardPopup.setEventListeners();
 delConfirmPopup.setEventListeners();
-const popupEditForm = new FormValidator(formConfig, "form-profile");
 popupEditForm.enableValidation();
-const popupFormPlace = new FormValidator(formConfig, "form-place");
 popupFormPlace.enableValidation();
-const popupEditAvatarForm = new FormValidator(formConfig, "form-avatar");
 popupEditAvatarForm.enableValidation();
