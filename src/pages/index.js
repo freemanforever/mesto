@@ -164,12 +164,14 @@ Promise.all([cardsData, getUserData])
         cardsList.renderItems(data);
     })
     .catch((err) => console.log(`Error with promises...` + err));
-const popupEditForm = new FormValidator(formConfig, "form-profile");
-const popupFormPlace = new FormValidator(formConfig, "form-place");
-const popupEditAvatarForm = new FormValidator(formConfig, "form-avatar");
+
 editProfileButton.addEventListener("click", openEditPopup);
+const popupEditForm = new FormValidator(formConfig, "form-profile");
 addPlaceButton.addEventListener("click", openAddPopup);
+const popupFormPlace = new FormValidator(formConfig, "form-place");
 editAvatarButton.addEventListener("click", openAvatarPopup);
+const popupEditAvatarForm = new FormValidator(formConfig, "form-avatar");
+
 userProfilePopup.setEventListeners();
 popupEditAvatar.setEventListeners();
 popupImage.setEventListeners();
